@@ -1,0 +1,57 @@
+/* components/plan-ways.css — the "How do you want to plan it?" card (plan-ways.js) and the Draft vs confirmed look of the
+   Planning diagram. Tokens only. */
+.pw-card{display:flex;flex-direction:column;gap:8px;min-width:0;}
+.pw-get{margin:0;font-size:var(--text-xs);line-height:1.45;color:var(--fg-2);}
+.pw-q{margin:0;font-weight:var(--weight-bold);color:var(--fg-1);}
+.pw-state{display:flex;align-items:center;gap:6px;margin:0;font-size:var(--text-xs);color:var(--fg-3);}
+.pw-skel{display:flex;flex-direction:column;gap:6px;}
+.pw-skel i{display:block;height:34px;border-radius:var(--radius-sm);background:var(--surface-subtle);}
+.pw-err{margin:0;}
+.pw-acts{display:flex;flex-wrap:wrap;gap:6px;}
+.pw-ways{display:flex;flex-direction:column;gap:6px;}
+.pw-way{border:1px solid var(--border-2);border-radius:var(--radius-md);background:var(--surface-card);}
+.pw-way.is-sel{border-color:var(--fg-2);}
+.pw-way-h{display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px;width:100%;padding:8px 10px;border:0;background:none;font:inherit;text-align:left;color:var(--fg-1);cursor:pointer;border-radius:var(--radius-md);}
+.pw-way-h:focus-visible{outline:2px solid var(--fg-1);outline-offset:2px;}
+.pw-dot{flex:none;width:12px;height:12px;border-radius:999px;border:1.5px solid var(--fg-3);}
+.pw-way.is-sel .pw-dot{border-color:var(--fg-1);background:radial-gradient(circle, var(--fg-1) 45%, transparent 50%);}
+.pw-letter{flex:none;font-size:10px;font-weight:var(--weight-bold);color:var(--fg-3);}
+.pw-title{font-size:var(--text-sm);font-weight:var(--weight-bold);}
+.pw-based{flex-basis:100%;padding-left:20px;font-size:var(--text-xs);color:var(--fg-3);}
+.pw-chip{display:inline-flex;align-items:center;padding:0 7px;border-radius:999px;border:1px solid var(--border-2);background:var(--surface-subtle);font-size:10px;font-weight:var(--weight-bold);color:var(--fg-2);}
+.pw-chip--rec{border-color:var(--sev-green-stroke);background:var(--sev-green-bg);color:var(--fg-1);}
+.pw-chip--ready{color:var(--fg-1);}
+.pw-way-b{display:flex;flex-direction:column;gap:8px;padding:0 10px 10px 30px;font-size:var(--text-xs);line-height:1.45;color:var(--fg-1);}
+.pw-best{margin:0;color:var(--fg-2);}
+.pw-flow{margin:0;padding-left:16px;display:flex;flex-direction:column;gap:2px;}
+.pw-build{align-self:flex-start;}
+.pw-own-l{color:var(--fg-2);}
+.pw-own{width:100%;}
+
+/* Output before a plan exists */
+.pw-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:240px;padding:24px;text-align:center;}
+.pw-empty-t{margin:0;font-weight:var(--weight-bold);color:var(--fg-1);}
+.pw-empty-d{margin:0;font-size:var(--text-xs);color:var(--fg-3);}
+
+/* Draft vs confirmed. Long dashes with wide gaps are drawn as four thin gradients (a CSS dashed border can't set the
+   dash length). Draft: Planning, the step nodes, Workstream result and every lane get a yellow fill and a yellow dashed
+   outline; Trigger and Intent clarification (done already) stay solid. Confirmed: no yellow; lanes keep the dash, grey. */
+.pl-flow--draft .pl-node:not(.pl-fixed), .pl-flow--draft .pl-lane, .pl-flow--set .pl-lane{
+  --pw-d: var(--sev-yellow-stroke); --pw-f: var(--sev-yellow-bg);
+  border-color:transparent;
+  background:
+    linear-gradient(90deg, var(--pw-d) 60%, transparent 0) top left / 20px 1.5px repeat-x,
+    linear-gradient(90deg, var(--pw-d) 60%, transparent 0) bottom left / 20px 1.5px repeat-x,
+    linear-gradient(180deg, var(--pw-d) 60%, transparent 0) top left / 1.5px 20px repeat-y,
+    linear-gradient(180deg, var(--pw-d) 60%, transparent 0) top right / 1.5px 20px repeat-y,
+    var(--pw-f);
+}
+.pl-flow--set .pl-lane{--pw-d: var(--border-1); --pw-f: var(--surface-card);}
+.pl-flow--draft .pl-node:not(.pl-fixed){box-shadow:none;}
+.pl-pill--draft{background:var(--sev-yellow-bg);border:1px solid var(--sev-yellow-stroke);color:var(--fg-1);}
+.pl-draft-note{flex-basis:100%;padding:3px 10px;border-radius:999px;border:1px solid var(--sev-yellow-stroke);background:var(--sev-yellow-bg);font-size:var(--text-xs);font-weight:var(--weight-bold);color:var(--fg-1);text-align:center;}
+.pl-draft-note.hidden{display:none;}
+/* each way's flow is a numbered list of steps (1, 2, 3); My own way's added steps carry an "Added" chip */
+.pw-steps{display:block;list-style:decimal;padding-left:20px;}
+.pw-steps li{margin:0 0 3px;}
+.pw-steps .pw-chip{margin-left:4px;}

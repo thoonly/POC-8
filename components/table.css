@@ -1,0 +1,18 @@
+/* table.css — .table inside .table-wrap (wrap scrolls horizontally) */
+.table-wrap { overflow-x: auto; border: 1px solid var(--c-lightBlack-100); border-radius: var(--radius-lg); background: var(--c-contrastBg); }
+.table { width: 100%; border-collapse: collapse; font-size: var(--text-sm); }
+.table th, .table td { padding: var(--space-3) var(--space-4); text-align: left; white-space: nowrap; }
+.table th { font-weight: var(--weight-medium); color: var(--c-bTxt-tertiary); background: var(--c-lightBlack); border-bottom: 1px solid var(--c-lightBlack-100); }
+.table td { border-bottom: 1px solid var(--c-lightBlack-100); }
+.table tbody tr:last-child td { border-bottom: 0; }
+.table tbody tr:hover { background: var(--c-lightWhite-100); }
+
+/* status badge — severity tokens */
+.badge { display: inline-block; padding: 2px var(--space-2); border-radius: var(--radius-sm); font-size: var(--text-xs); font-weight: var(--weight-medium); }
+.badge--ok { background: var(--c-sevaccGreen); color: var(--c-sevS-green); }
+.badge--warn { background: var(--c-sevaccYellow); color: var(--c-sevS-yellow); }
+.badge--err { background: var(--c-sevaccRed); color: var(--c-sevRed); }
+.badge--neutral { background: var(--c-sevaccIdent); color: var(--c-sevNeutral); }
+
+/* dark mode: sevaccRed fill and sevRed text are both D30A03 in the design system, so pair with solid-white */
+[data-theme="dark"] .badge--err { color: var(--c-solid-white); }

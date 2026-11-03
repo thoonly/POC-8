@@ -1,0 +1,43 @@
+/* components/complexity-v2.css — the node brief and the gate for "Node complexity v2" execution nodes (complexity-v2.js),
+   plus the v2 bits of Planning's Node information. Tokens only. */
+.pl-tag--lvl{background:var(--surface-subtle);border-color:var(--border-2);}
+.pl-tag--lead{flex:none;background:var(--surface-subtle);border-color:var(--border-2);font-weight:var(--weight-regular, 400);}
+.pl-subs{margin:0;padding:0 0 0 18px;display:flex;flex-direction:column;gap:8px;font-size:var(--text-xs);line-height:1.45;color:var(--fg-1);}
+.pl-sub-top{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 8px;}
+.pl-sub-t{flex:1;min-width:120px;}
+.pl-sub-u{display:block;margin-top:2px;color:var(--fg-3);}
+#pl-ni-level{margin-bottom:4px;}
+
+/* node brief */
+.cx-brief, .cx-gate{margin:12px 0;padding:12px 14px;border:1px solid var(--border-2);border-radius:var(--radius-md);background:var(--surface-card);font-size:var(--text-xs);line-height:1.45;color:var(--fg-1);}
+.cx-brief .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+.cx-toggle{padding:0;border:0;background:none;font:inherit;font-weight:var(--weight-bold);color:var(--fg-2);cursor:pointer;text-decoration:underline;}
+.cx-h--top{margin-top:0;}
+.cx-toggle:focus-visible, .cx-brief button:focus-visible, .cx-gate button:focus-visible{outline:2px solid var(--fg-1);outline-offset:2px;}
+.cx-h{margin:10px 0 6px;font-size:10px;font-weight:var(--weight-bold);letter-spacing:.04em;text-transform:uppercase;color:var(--fg-3);}
+.cx-subs{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;}
+.cx-sub{padding:8px 10px;border:1px solid var(--border-2);border-radius:var(--radius-sm);}
+.cx-sub--now{border-color:var(--fg-3);background:var(--surface-subtle);}
+.cx-sub--done{color:var(--fg-3);}
+.cx-sub-top{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 8px;}
+.cx-sub-mark{flex:none;display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:999px;border:1px solid var(--border-2);font-size:10px;font-weight:var(--weight-bold);}
+.cx-sub--done .cx-sub-mark{background:var(--sev-green-bg);border-color:var(--sev-green-stroke);color:var(--fg-1);}
+.cx-sub-kind{flex:none;min-width:70px;font-size:10px;font-weight:var(--weight-bold);color:var(--fg-3);}
+.cx-sub-t{flex:1;min-width:120px;}
+.cx-now{font-size:10px;font-weight:var(--weight-bold);color:var(--fg-1);}
+.cx-sub-note{display:block;margin-top:4px;color:var(--fg-3);}
+.cx-sub-act{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;}
+.cx-settle{flex:1;min-width:160px;}
+.cx-undo{margin-top:4px;}
+.cx-list{margin:0;padding:0 0 0 18px;display:flex;flex-direction:column;gap:4px;}
+.cx-reopen{margin:10px 0 0;color:var(--fg-3);}
+.cx-changed{margin-bottom:8px;padding:8px 10px;border-radius:var(--radius-sm);background:var(--sev-yellow-bg);border:1px solid var(--sev-yellow-stroke);}
+.cx-changed .cx-h{margin-top:0;color:var(--fg-1);}
+.cx-changed ul{margin:0;padding-left:18px;}
+
+/* gate */
+.cx-gate .ip-label{display:block;margin-top:8px;}
+.cx-gate textarea, .cx-gate .cx-date{width:100%;}
+.cx-gate .cx-date{max-width:200px;}
+.cx-gate .ex-check{margin-top:6px;}
+.cx-gate-ok{margin:10px 0 0;padding:6px 10px;border-radius:var(--radius-sm);background:var(--sev-green-bg);border:1px solid var(--sev-green-stroke);color:var(--fg-1);font-weight:var(--weight-bold);}

@@ -1,0 +1,5 @@
+/* components/chat-images.css — a photo under a Chat answer (see chat-images.js). Tokens only. */
+.msg .msg-img{margin:10px 0 2px;max-width:360px;border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--border-2, var(--c-lightBlack-100));background:var(--c-lightBlack);}
+.msg .msg-img img{display:block;width:100%;max-height:240px;object-fit:cover;}
+.msg .msg-img figcaption{padding:5px 9px;font-size:var(--text-xs);line-height:1.35;color:var(--fg-3, var(--c-bTxt-tertiary));}
+.msg .msg-img figcaption a{color:inherit;}

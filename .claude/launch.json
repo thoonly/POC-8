@@ -1,0 +1,105 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "static",
+      "runtimeExecutable": "ruby",
+      "runtimeArgs": [
+        "-run",
+        "-e",
+        "httpd",
+        "/private/tmp/claude-501/-Users-patcharanateiamsirithanagorn-Downloads-Node-POC/8d52d49d-4d8e-4c1b-8e3e-1c3cf5933fb8/scratchpad/site",
+        "-p",
+        "8765"
+      ],
+      "port": 8765
+    },
+    {
+      "name": "poc4",
+      "runtimeExecutable": "ruby",
+      "runtimeArgs": [
+        "-run",
+        "-e",
+        "httpd",
+        "/private/tmp/claude-501/-Users-nnluxui02-Desktop-Node-POC-4/d681f52b-0a24-4335-8372-bae161ea74f7/scratchpad/site",
+        "-p",
+        "8766"
+      ],
+      "port": 8766
+    },
+    {
+      "name": "ciq",
+      "runtimeExecutable": "ruby",
+      "runtimeArgs": [
+        "-run",
+        "-e",
+        "httpd",
+        "/private/tmp/claude-501/-Users-patcharanateiamsirithanagorn-Downloads-CIQ-POC/d20f08a7-ceb5-4cf9-97e9-f11d267a5697/scratchpad/site",
+        "-p",
+        "8767"
+      ],
+      "port": 8767
+    },
+    {
+      "name": "ciq4",
+      "runtimeExecutable": "ruby",
+      "runtimeArgs": [
+        "-run",
+        "-e",
+        "httpd",
+        "/private/tmp/claude-501/-Users-nnluxui02-Desktop-CIQ-POC-4/7eb19d7b-9869-43c9-9e88-eb4b2e643038/scratchpad/site",
+        "-p",
+        "8768"
+      ],
+      "port": 8768
+    },
+    {
+      "name": "outpoc",
+      "runtimeExecutable": "ruby",
+      "runtimeArgs": [
+        "-run",
+        "-e",
+        "httpd",
+        "/private/tmp/claude-501/-Users-patcharanateiamsirithanagorn-Downloads-CIQ-POC/a92ae3e2-9bec-4922-934a-68f3315c78ee/scratchpad/site",
+        "-p",
+        "8769"
+      ],
+      "port": 8769
+    },
+    {
+      "name": "canvas",
+      "runtimeExecutable": "ruby",
+      "runtimeArgs": [
+        "-run",
+        "-e",
+        "httpd",
+        "/private/tmp/claude-501/-Users-patcharanateiamsirithanagorn-Downloads-Canvas-POC/d626bce7-0980-42bb-9ede-236cac07ccdf/scratchpad/site",
+        "-p",
+        "8770"
+      ],
+      "port": 8770
+    },
+    {
+      "name": "canvas7",
+      "runtimeExecutable": "ruby",
+      "runtimeArgs": [
+        "/private/tmp/claude-501/-Users-nnluxui02--claude-spares-spare-ULIkqc/67630767-4d5f-4709-b573-300827b0cd7d/scratchpad/serve.rb",
+        "/private/tmp/claude-501/-Users-nnluxui02--claude-spares-spare-ULIkqc/67630767-4d5f-4709-b573-300827b0cd7d/scratchpad/site",
+        "8771"
+      ],
+      "port": 8771
+    },
+    {
+      "name": "poc7-here",
+      "runtimeExecutable": "ruby",
+      "runtimeArgs": ["-run", "-e", "httpd", "/private/tmp/claude-501/-Users-patcharanateiamsirithanagorn-Downloads-Canvas-POC-7/0a4d34f1-2b57-44aa-9a7b-2eab859e75e5/scratchpad/site", "-p", "8772"],
+      "port": 8772
+    },
+    {
+      "name": "poc8-here",
+      "runtimeExecutable": "ruby",
+      "runtimeArgs": ["-run", "-e", "httpd", "/private/tmp/claude-501/-Users-patcharanateiamsirithanagorn-Downloads-Canvas-POC-8/7992e379-6961-4bf0-a050-496c3ca6b183/scratchpad/site", "-p", "8773"],
+      "port": 8773
+    }
+  ]
+}

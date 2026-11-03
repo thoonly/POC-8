@@ -1,0 +1,10 @@
+/* Intent "Repeats": how often the work (or one part of it) reruns, and until when.
+   Planning reads it and sets the recurrence on the node that repeats. */
+.ip-cadence{margin:var(--space-4) 0 0;padding:0;border:0;min-width:0;}
+.ip-cadence > legend{padding:0;}
+.ip-cadence-row{display:grid;grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));gap:var(--space-3);}
+.ip-cadence-f{display:flex;flex-direction:column;gap:var(--space-1);min-width:0;font-size:var(--text-xs);color:var(--fg-4);}
+.ip-cadence-f .ip-field{min-height:40px;}
+.ip-cadence .ip-hint{margin:var(--space-2) 0 0;}
+.ip-cadence .ip-field:focus-visible{outline:var(--focus-ring);outline-offset:2px;}
+.ip-cadence .ip-field:disabled{opacity:.7;}

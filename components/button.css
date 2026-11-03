@@ -1,0 +1,28 @@
+/* button.css — .btn  variants: (default primary) --ghost --ai --danger  sizes: --sm */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+  min-height: 40px; padding: 0 var(--space-4);
+  font: inherit; font-size: var(--text-sm); font-weight: var(--weight-medium);
+  border: 1px solid transparent; border-radius: var(--radius-md); cursor: pointer;
+  background: var(--c-fbStill); color: var(--c-shapeMain-rev);
+  transition: background var(--duration-fast), color var(--duration-fast), border-color var(--duration-fast);
+}
+.btn:hover { background: var(--c-fbHover); }
+.btn:active { background: var(--c-fbActive); }
+.btn:disabled, .btn[aria-disabled="true"] { background: var(--c-fbDisable); color: var(--c-bTxt-disPri); cursor: not-allowed; }
+
+.btn--ghost { background: transparent; color: var(--c-ghost-still); border-color: var(--c-lightBlack-200); }
+.btn--ghost:hover { background: transparent; color: var(--c-ghost-hover); }
+.btn--ghost:active { background: transparent; color: var(--c-ghost-active); }
+.btn--ghost:disabled { background: transparent; color: var(--c-ghost-disable); border-color: var(--c-lightBlack-100); }
+
+.btn--ai { background: var(--g-aiGen-still); color: var(--c-solid-white); }
+.btn--ai:hover { background: var(--g-aiGen-hover); }
+.btn--ai:active { background: var(--g-aiGen-active); }
+.btn--ai:disabled { background: var(--g-aiGen-disable); color: var(--c-bTxt-disPri); }
+
+.btn--danger { background: var(--c-neg-still); color: var(--c-solid-white); }
+.btn--danger:hover { background: var(--c-neg-hover); }
+.btn--danger:active { background: var(--c-neg-active); }
+
+.btn--sm { min-height: 32px; padding: 0 var(--space-3); font-size: var(--text-xs); }

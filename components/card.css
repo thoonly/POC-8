@@ -1,0 +1,17 @@
+/* card.css — .card  variants: --tile (state-aware) --done (green tile) --ai (AI surface) */
+.card {
+  background: var(--c-contrastBg); border: 1px solid var(--c-lightBlack-100);
+  border-radius: var(--radius-lg); padding: var(--space-5);
+}
+.card__title { font-size: var(--text-md); font-weight: var(--weight-bold); margin: 0 0 var(--space-2); }
+.card__meta { font-size: var(--text-sm); color: var(--c-bTxt-tertiary); }
+
+.card--tile { background: var(--g-tileOpt-still); cursor: pointer; transition: background var(--duration-fast); }
+.card--tile:hover { background: var(--g-tileOpt-hover); }
+.card--tile:active { background: var(--g-tileOpt-active); }
+.card--done { background: var(--g-tileOpGreen-still); }
+.card--done:hover { background: var(--g-tileOpGreen-hover); }
+.card--done:active { background: var(--g-tileOpGreen-active); }
+
+.card--ai { background: var(--g-chatAi); border-color: var(--c-lighPurple); }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-4); }

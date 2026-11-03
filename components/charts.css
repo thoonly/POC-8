@@ -1,0 +1,122 @@
+/* components/charts.css — colours and type for components/charts.js (tokens only; light and dark). */
+.cf-ch svg{display:block;width:100%;height:auto;overflow:visible;}
+/* Colours follow the design system: quiet grays (the form / shape grays), and the element "active" orange for whatever
+   is hovered. Several series or slices use grays of different lightness, alternating light and dark so neighbours differ. */
+.cf-ch{--ch-0:var(--c-form-placeHolder);--ch-1:var(--c-form-still-alt);--ch-2:var(--c-lightBlack-200);--ch-3:var(--c-shapeSec);--ch-4:var(--c-form-disable);--ch-5:var(--c-shapeStd);--ch-hot:var(--c-element-active);}
+[data-theme="dark"] .cf-ch{--ch-0:var(--c-form-placeHolder);--ch-1:var(--c-form-hover);--ch-2:var(--c-lightBlack-200);--ch-3:var(--c-form-disable);--ch-4:var(--c-lightBlack-100);--ch-5:var(--c-form-still-alt);}
+.cf-ch .cf-ch-c0{fill:var(--ch-0);}
+.cf-ch .cf-ch-c1{fill:var(--ch-1);}
+.cf-ch .cf-ch-c2{fill:var(--ch-2);}
+.cf-ch .cf-ch-c3{fill:var(--ch-3);}
+.cf-ch .cf-ch-c4{fill:var(--ch-4);}
+.cf-ch .cf-ch-c5{fill:var(--ch-5);}
+.cf-ch .cf-ch-line{fill:none;stroke-width:3;stroke-linejoin:round;stroke-linecap:round;}
+.cf-ch .cf-ch-s0{stroke:var(--ch-1);}
+.cf-ch .cf-ch-s1{stroke:var(--ch-0);}
+.cf-ch .cf-ch-s2{stroke:var(--ch-3);}
+.cf-ch .cf-ch-s3{stroke:var(--ch-5);}
+.cf-ch .cf-ch-dot.cf-ch-c0{fill:var(--ch-1);} /* a point matches its (darker) line */
+.cf-ch .cf-ch-dot.cf-ch-c1{fill:var(--ch-0);}
+.cf-ch .cf-ch-grid{stroke:var(--border-2, var(--c-lightBlack-100));stroke-width:1;}
+.cf-ch .cf-ch-base{stroke:var(--fg-3, var(--c-shapeSec));stroke-width:1.5;}
+.cf-ch text{font-family:inherit;}
+.cf-ch .cf-ch-axis{font-size:12px;fill:var(--fg-3, var(--c-shapeSec));}
+.cf-ch .cf-ch-label{font-size:13px;fill:var(--fg-2, var(--c-bTxt-secondary));}
+.cf-ch .cf-ch-val{font-size:12px;font-weight:600;fill:var(--fg-1, var(--c-bTxt-primary));}
+.cf-ch .cf-ch-total{font-size:20px;font-weight:600;fill:var(--fg-1, var(--c-bTxt-primary));}
+.cf-ch-legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:6px;font-size:var(--text-xs);color:var(--fg-2, var(--c-bTxt-secondary));}
+.cf-ch-legend span{display:inline-flex;align-items:center;gap:6px;}
+.cf-ch-legend i{display:inline-block;width:10px;height:10px;border-radius:2px;}
+.cf-ch-legend i.cf-ch-c0{background:var(--ch-0);} /* same grays as the bars */
+.cf-ch-legend i.cf-ch-c1{background:var(--ch-1);}
+.cf-ch-legend i.cf-ch-c2{background:var(--ch-2);}
+.cf-ch-legend i.cf-ch-c3{background:var(--ch-3);}
+.cf-ch-legend--line i.cf-ch-c0{background:var(--ch-1);} /* a line chart's legend: same grays as its lines */
+.cf-ch-legend--line i.cf-ch-c1{background:var(--ch-0);}
+.cf-ch-legend--line i.cf-ch-c2{background:var(--ch-3);}
+.cf-ch-legend--line i.cf-ch-c3{background:var(--ch-5);}
+
+/* A chart in the output: title, a Chart | Table switch, then the chart or its table (the table is the data) */
+.rs-chart{margin:12px 0 16px;padding:12px 14px;border:1px solid var(--border-1, var(--c-lightBlack-200));border-radius:var(--radius-md);background:var(--surface-card, var(--c-contrastBg));}
+.rs-chart-h{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.rs-chart-t{font-weight:var(--weight-bold);font-size:var(--text-sm);color:var(--fg-1, var(--c-bTxt-primary));}
+.rs-chart-sw{margin-left:auto;display:inline-flex;padding:2px;border-radius:999px;border:1px solid var(--border-2, var(--c-lightBlack-100));}
+.rs-chart-sw button{min-height:24px;padding:0 10px;border:0;border-radius:999px;background:transparent;color:var(--fg-2, var(--c-bTxt-secondary));font:inherit;font-size:var(--text-xs);cursor:pointer;}
+.rs-chart-sw button[aria-pressed="true"]{background:var(--fg-1, var(--c-bTxt-primary));color:var(--surface-card, var(--c-contrastBg));}
+.rs-chart-sw button:focus-visible{outline:var(--focus-ring);outline-offset:2px;}
+.rs-chart-h{flex-wrap:wrap;}
+.rs-chart-ty + .rs-chart-sw{margin-left:0;}
+.rs-chart-sw button:disabled{opacity:.4;cursor:not-allowed;}
+.rs-chart-sw button:not([aria-pressed="true"]):not(:disabled):hover{color:var(--fg-1, var(--c-bTxt-primary));background:var(--surface-subtle, var(--c-lightBlack));}
+.rs-chart.is-chart .answer-table{display:none;}
+.rs-chart.is-table .cf-ch, .rs-chart.is-table .rs-chart-ty{display:none;} /* the type buttons are for the chart only */
+.rs-chart.is-table .rs-chart-ty + .rs-chart-sw{margin-left:auto;}
+/* a chart keeps a readable size in a wide Output (full screen): it never grows past this, so its text stays normal size */
+.rs-chart{max-width:680px;box-sizing:border-box;}
+.rs-chart-note{margin:6px 0 0;font-size:var(--text-xs);color:var(--fg-3, var(--c-shapeSec));}
+/* A photo of the place a section is about */
+.rs-photo{margin:8px 0 14px;max-width:520px;border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--border-2, var(--c-lightBlack-100));}
+.rs-photo img{display:block;width:100%;max-height:300px;object-fit:cover;}
+.rs-photo figcaption{padding:5px 9px;font-size:var(--text-xs);color:var(--fg-3, var(--c-shapeSec));}
+.rs-photo figcaption a{color:inherit;}
+.rs-photo.is-loading{display:none;}
+/* A chart on a slide: the right side, like a photo */
+.pres-slide .ps-chart{position:absolute;top:6%;right:3%;bottom:10%;width:44%;display:flex;flex-direction:column;justify-content:center;}
+.pres-slide.has-chart .pres-slide-inner{right:47%;padding-right:3cqw;}
+.pres-slide .ps-chart .cf-ch-legend{font-size:1.4cqw;}
+
+.rs-chart.is-chart .rs-chart-note{display:none;}
+/* Several photos from one marker ("A, City; B, City"): side by side, wrapping on narrow screens */
+.rs-photos{display:grid;grid-template-columns:repeat(auto-fit, minmax(150px, 1fr));gap:8px;margin:8px 0 14px;max-width:680px;}
+.rs-photos .rs-photo{margin:0;max-width:none;}
+.rs-photos .rs-photo img{height:160px;max-height:none;}
+/* Hover a bar (or a line point, a slice, a legend row): it turns orange, everything else turns one darker gray so the
+   hovered one stands out, and a label under the pointer shows a header and the details (charts.js) */
+/* the rest recedes into the background: a lighter gray on light, a darker gray on dark */
+.cf-ch{--ch-dim:var(--c-lightBlack-200);}
+[data-theme="dark"] .cf-ch{--ch-dim:var(--c-lightBlack-100);}
+.cf-ch .cf-ch-hit{fill:transparent;cursor:default;}
+.cf-ch :is(rect[data-k], .cf-ch-slice, .cf-ch-dot){transition:fill .15s, transform .15s;}
+.cf-ch.is-hover :is(rect[data-k]:not(.cf-ch-hit), .cf-ch-slice, .cf-ch-dot):not(.is-hot){fill:var(--ch-dim);}
+.cf-ch.is-hover .cf-ch-lg:not(.is-hot) rect[class^="cf-ch-c"]{fill:var(--ch-dim);}
+.cf-ch :is(rect[data-k]:not(.cf-ch-hit), .cf-ch-slice, .cf-ch-dot).is-hot, .cf-ch .cf-ch-lg.is-hot rect[class^="cf-ch-c"]{fill:var(--ch-hot);}
+.cf-ch .cf-ch-dot.is-hot{r:7;}
+.cf-ch .cf-ch-slice{cursor:default;stroke:var(--surface-card, var(--c-contrastBg));stroke-width:2;transform-box:view-box;transform-origin:150px 150px;} /* slices stay apart when they share the gray */
+.cf-ch .cf-ch-slice.is-hot{transform:scale(1.05);}
+.cf-ch .cf-ch-label.is-hot{font-weight:var(--weight-bold);fill:var(--fg-1, var(--c-bTxt-primary));}
+.cf-ch .cf-ch-guide{stroke:transparent;stroke-width:1.5;stroke-dasharray:4 4;}
+.cf-ch .cf-ch-guide.is-hot{stroke:var(--fg-3, var(--c-shapeSec));}
+.cf-ch .cf-ch-lg{cursor:default;}
+.cf-ch .cf-ch-lgbg{fill:transparent;transition:fill .15s;}
+.cf-ch .cf-ch-lg.is-hot .cf-ch-lgbg{fill:var(--surface-subtle, var(--c-lightBlack));}
+.cf-ch-tip{position:fixed;z-index:5000;display:none;min-width:120px;max-width:280px;padding:7px 11px;border-radius:var(--radius-md);background:var(--fg-1, var(--c-bTxt-primary));color:var(--surface-card, var(--c-contrastBg));font-size:var(--text-xs);line-height:1.45;pointer-events:none;box-shadow:var(--shadow-3);}
+.cf-ch-tip.is-on{display:block;}
+.cf-ch-tip-h{font-weight:var(--weight-bold);font-size:var(--text-sm);margin-bottom:2px;}
+.cf-ch-tip-r{opacity:.85;}
+.cf-ch-tip-r.is-b{opacity:1;font-weight:var(--weight-bold);}
+/* a negative bar (below the zero line) has a dashed edge so the drop reads at a glance */
+.cf-ch .cf-ch-neg{stroke:var(--fg-3, var(--c-shapeSec));stroke-opacity:.5;stroke-width:1;stroke-dasharray:3 2;}
+/* Pie and donut: a few parts of one whole read better in colour, so they use a subtle, warm set from the design system —
+   the element taupe, then the pastel sage, sand, lilac and sky, and a gray — alternating dark and light so neighbours
+   differ. Orange stays for the hovered slice. On hover the other slices fade (they keep their colour). Bars and lines
+   stay gray. */
+.cf-ch{--pie-0:var(--c-element-still);--pie-1:var(--c-sevpGreen);--pie-2:var(--c-sevpOrange);--pie-3:var(--c-form-placeHolder);--pie-4:var(--c-sevpViolet);--pie-5:var(--c-sevpBlue);}
+.cf-ch :is(.cf-ch-slice, .cf-ch-lg rect).cf-ch-c0{fill:var(--pie-0);}
+.cf-ch :is(.cf-ch-slice, .cf-ch-lg rect).cf-ch-c1{fill:var(--pie-1);}
+.cf-ch :is(.cf-ch-slice, .cf-ch-lg rect).cf-ch-c2{fill:var(--pie-2);}
+.cf-ch :is(.cf-ch-slice, .cf-ch-lg rect).cf-ch-c3{fill:var(--pie-3);}
+.cf-ch :is(.cf-ch-slice, .cf-ch-lg rect).cf-ch-c4{fill:var(--pie-4);}
+.cf-ch :is(.cf-ch-slice, .cf-ch-lg rect).cf-ch-c5{fill:var(--pie-5);}
+[data-theme="dark"] .cf-ch :is(.cf-ch-slice, .cf-ch-lg rect)[class*="cf-ch-c"]{fill-opacity:.88;} /* pastels a touch softer on dark */
+.cf-ch.is-hover .cf-ch-slice:not(.is-hot), .cf-ch.is-hover .cf-ch-lg:not(.is-hot) rect[class*="cf-ch-c"]{opacity:.32;}
+.cf-ch.is-hover .cf-ch-slice.cf-ch-c0:not(.is-hot), .cf-ch.is-hover .cf-ch-lg:not(.is-hot) rect.cf-ch-c0{fill:var(--pie-0);}
+.cf-ch.is-hover .cf-ch-slice.cf-ch-c1:not(.is-hot), .cf-ch.is-hover .cf-ch-lg:not(.is-hot) rect.cf-ch-c1{fill:var(--pie-1);}
+.cf-ch.is-hover .cf-ch-slice.cf-ch-c2:not(.is-hot), .cf-ch.is-hover .cf-ch-lg:not(.is-hot) rect.cf-ch-c2{fill:var(--pie-2);}
+.cf-ch.is-hover .cf-ch-slice.cf-ch-c3:not(.is-hot), .cf-ch.is-hover .cf-ch-lg:not(.is-hot) rect.cf-ch-c3{fill:var(--pie-3);}
+.cf-ch.is-hover .cf-ch-slice.cf-ch-c4:not(.is-hot), .cf-ch.is-hover .cf-ch-lg:not(.is-hot) rect.cf-ch-c4{fill:var(--pie-4);}
+.cf-ch.is-hover .cf-ch-slice.cf-ch-c5:not(.is-hot), .cf-ch.is-hover .cf-ch-lg:not(.is-hot) rect.cf-ch-c5{fill:var(--pie-5);}
+.cf-ch .cf-ch-slice.is-hot, .cf-ch .cf-ch-lg.is-hot rect[class*="cf-ch-c"]{fill:var(--ch-hot);fill-opacity:1;opacity:1;}
+.cf-ch .cf-ch-slice{transition:opacity .15s, fill .15s, transform .15s;}
+/* a total row in the chart's table: named under the chart, not drawn as one more part */
+.cf-ch-totalnote{margin:6px 0 0;font-size:var(--text-xs);color:var(--fg-3, var(--c-shapeSec));}
+.cf-ch-totalnote b{color:var(--fg-1, var(--c-bTxt-primary));}

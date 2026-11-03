@@ -1,0 +1,227 @@
+/* components/cf-collab.css — Cognitive Field canvas: template look, multi-select, Compare tables, dot voting.
+   Loaded before the pages' own canvas styles, so canvas overrides are scoped under #xc-wrap to win.
+   Tokens only (var(--c-…) / page aliases --fg-*, --surface-*, --border-*, --shadow-*). */
+
+/* ---------- Template look: what is in use is the focus, ideas step back ---------- */
+/* In use = sticky notes: paper colour, square corners, a lifted shadow and a glue strip.
+   Yellow = yours, green = picked from ideas or linked from the graph (no longer the idea blue). */
+#xc-wrap .xc-pi:not(.xc-pi--draft):not(.xc-pi--idea){border-radius:2px;box-shadow:var(--shadow-2);}
+#xc-wrap .xc-pi:not(.xc-pi--draft):not(.xc-pi--idea)::before{content:'';position:absolute;left:0;right:0;top:0;height:6px;border-radius:2px 2px 0 0;background:color-mix(in srgb, var(--c-solid-black) 6%, transparent);pointer-events:none;}
+#xc-wrap .xc-pi--user{background:var(--c-sevpYellow);}
+#xc-wrap .xc-pi--smart{background:var(--c-sevpGreen);}
+#xc-wrap .xc-pi--ai{background:var(--c-sevpViolet);}
+#xc-wrap .xc-pi.is-sel{box-shadow:0 0 0 2px var(--fg-1), var(--shadow-2);}
+/* the table that holds them reads as the main area */
+#xc-wrap .xc-w--tpl .xc-table{background:var(--surface-card);border:1px solid var(--border-1);}
+/* Ideas: quiet rows beside the table — not in use yet. A small blue dot = idea (same blue as ideas in the graph). */
+#xc-wrap .xc-split{grid-template-columns:minmax(0, 1fr);} /* the ideas sit below the working area (the table), in as many columns as fit */
+#xc-wrap .xc-split .xc-tray-list{display:grid;grid-template-columns:repeat(auto-fill, minmax(160px, 1fr));gap:6px;flex-direction:row;}
+#xc-wrap .xc-split .xc-pi--idea{width:auto;}
+#xc-wrap .xc-split > .xc-tray{order:2;}
+#xc-wrap .xc-split.xc-split--one{grid-template-columns:minmax(0, 1fr);}
+#xc-wrap .xc-tray{background:transparent;border:1px dashed var(--border-1);}
+#xc-wrap .xc-tray-h{color:var(--fg-3);font-weight:var(--weight-medium);}
+#xc-wrap .xc-idea{background:transparent;border:1px solid var(--border-2);box-shadow:none;}
+#xc-wrap .xc-idea:hover{border-color:var(--tone-explore-soft);background:var(--surface-card);}
+#xc-wrap .xc-idea-t{color:var(--fg-2);font-weight:var(--weight-medium);}
+#xc-wrap .xc-idea-t::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--tone-explore);margin-right:6px;vertical-align:middle;}
+#xc-wrap .xc-idea-d, #xc-wrap .xc-idea-w{color:var(--fg-3);}
+
+/* ---------- multi-select ---------- */
+#xc-wrap .cf-msel{outline:2px solid var(--fg-1);outline-offset:3px;}
+.cf-marquee{position:absolute;z-index:8;pointer-events:none;border:1px solid var(--fg-2);background:color-mix(in srgb, var(--fg-2) 10%, transparent);border-radius:2px;}
+.cf-ui{position:absolute;inset:0;pointer-events:none;z-index:7;}
+.cf-ui > *{pointer-events:auto;}
+.cf-bar{position:absolute;left:50%;top:52px;transform:translateX(-50%);display:flex;align-items:center;gap:6px;padding:4px 4px 4px 12px;border-radius:999px;background:var(--surface-card);border:1px solid var(--border-2);box-shadow:var(--shadow-3);font-size:var(--text-xs);color:var(--fg-1);white-space:nowrap;}
+.cf-bar-n{font-weight:var(--weight-bold);}
+.cf-bar-tip{color:var(--fg-3);}
+.cf-btn{display:inline-flex;align-items:center;gap:5px;min-height:28px;padding:0 10px;border-radius:999px;border:1px solid var(--border-2);background:var(--surface-card);color:var(--fg-1);font:inherit;font-size:var(--text-xs);cursor:pointer;}
+.cf-btn:hover{border-color:var(--fg-3);}
+.cf-btn:disabled{opacity:.5;cursor:default;}
+.cf-btn--pri{background:var(--fg-1);color:var(--surface-card);border-color:var(--fg-1);}
+.cf-btn--pri:hover{border-color:var(--fg-1);}
+.cf-btn:focus-visible, .cf-icon:focus-visible, .cf-mini:focus-visible, .cf-dot-x:focus-visible{outline:var(--focus-ring);outline-offset:2px;}
+.cf-btn .ico, .cf-w-t .ico, .cf-vp-t .ico{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.4;}
+.cf-icon{width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:var(--radius-sm);background:transparent;color:var(--fg-3);font:inherit;cursor:pointer;}
+.cf-icon:hover{background:var(--surface-subtle);color:var(--fg-1);}
+.cf-sp{flex:1;}
+
+/* ---------- Compare table (a widget on the canvas) ---------- */
+.cf-w{position:absolute;min-width:360px;max-width:760px;border-radius:var(--radius-md);border:1px solid var(--border-1);background:var(--surface-card);box-shadow:var(--shadow-3);color:var(--fg-1);font-size:var(--text-xs);}
+.cf-w-h{display:flex;align-items:center;gap:6px;padding:6px 6px 6px 10px;border-bottom:1px solid var(--border-2);cursor:grab;user-select:none;}
+.cf-w-t{display:inline-flex;align-items:center;gap:6px;font-weight:var(--weight-bold);text-transform:uppercase;letter-spacing:.04em;font-size:10px;color:var(--fg-2);}
+.cf-w-b{padding:10px;max-height:520px;overflow:auto;}
+.cf-busy{display:flex;align-items:center;gap:8px;margin:6px 0;color:var(--fg-2);}
+.cf-spin{width:12px;height:12px;border-radius:50%;border:2px solid var(--border-1);border-top-color:var(--fg-1);animation:cf-spin .8s linear infinite;flex-shrink:0;}
+@keyframes cf-spin{to{transform:rotate(360deg);}}
+@media (prefers-reduced-motion: reduce){ .cf-spin{animation:none;} }
+.cf-err{margin:0 0 8px;padding:6px 8px;border-radius:var(--radius-sm);background:var(--sev-red-bg);border:1px solid var(--sev-red-stroke);}
+.cf-table{width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed;}
+.cf-table th, .cf-table td{padding:7px 8px;text-align:left;vertical-align:top;border-bottom:1px solid var(--border-2);line-height:1.4;}
+.cf-table thead th{vertical-align:bottom;background:var(--surface-subtle);}
+.cf-table thead th:first-child{width:22%;border-top-left-radius:var(--radius-sm);}
+.cf-table thead th:last-child{border-top-right-radius:var(--radius-sm);}
+.cf-table tbody th{font-weight:var(--weight-medium);color:var(--fg-2);}
+.cf-th-l{display:block;font-size:var(--text-sm);font-weight:var(--weight-bold);color:var(--fg-1);}
+.cf-th-k{display:block;font-weight:var(--weight-regular);color:var(--fg-3);font-size:10px;}
+.cf-th-acts{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;}
+.cf-vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
+/* pale green row: dark text in both themes (the table's own th/td colours would turn it white in dark mode) */
+.cf-table tr.cf-best > th, .cf-table tr.cf-best > td{background:var(--c-sevpGreen);color:var(--c-solid-black);}
+.cf-mini{min-height:22px;padding:0 7px;border-radius:999px;border:1px solid var(--border-1);background:var(--surface-card);color:var(--fg-1);font:inherit;font-size:10px;font-weight:var(--weight-medium);cursor:pointer;}
+.cf-mini:hover{border-color:var(--fg-3);}
+.cf-sum{margin:10px 0 0;color:var(--fg-1);line-height:1.45;}
+.cf-src{margin:8px 0 0;color:var(--fg-3);}
+.cf-src a{color:var(--fg-2);}
+
+/* ---------- Dot voting ---------- */
+#xc-wrap .xc-rail [data-cf="vote"] .ico{width:16px;height:16px;fill:currentColor;stroke:none;}
+#xc-wrap[data-cf-vote="1"] .xc-pi, #xc-wrap[data-cf-vote="1"] [data-card], #xc-wrap[data-cf-vote="1"] [data-idea]{cursor:copy;}
+#xc-wrap .xc-pi, #xc-wrap [data-idea]{position:relative;} /* node cards are already positioned widgets */
+.cf-dots{position:absolute;top:-10px;left:50%;transform:translateX(-50%);z-index:3;display:inline-flex;align-items:center;gap:3px;padding:2px 6px;border-radius:999px;background:var(--surface-card);border:1px solid var(--border-1);box-shadow:var(--shadow-1);color:var(--fg-1);font-size:10px;}
+.cf-dots.is-empty{opacity:.55;}
+.cf-dots b{margin-left:2px;font-weight:var(--weight-bold);}
+.cf-dot{display:inline-block;width:8px;height:8px;border-radius:50%;}
+.cf-dot--me{background:var(--fg-1);}
+.cf-dot--team{background:var(--fg-3);}
+.cf-dot--ghost{border:1.5px dashed var(--fg-3);width:6px;height:6px;}
+.cf-dot-x{margin-left:2px;width:16px;height:16px;padding:0;border:0;border-radius:50%;background:var(--surface-subtle);color:var(--fg-1);font:inherit;font-size:11px;line-height:1;cursor:pointer;}
+.cf-vp{position:absolute;right:12px;top:52px;width:260px;padding:10px 12px 12px;border-radius:var(--radius-md);background:var(--surface-card);border:1px solid var(--border-2);box-shadow:var(--shadow-3);font-size:var(--text-xs);color:var(--fg-1);}
+.cf-vp-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
+.cf-vp-t{display:inline-flex;align-items:center;gap:6px;font-weight:var(--weight-bold);}
+.cf-vp-t .ico{fill:currentColor;stroke:none;}
+.cf-vp-p{margin:0 0 8px;color:var(--fg-2);line-height:1.45;}
+.cf-vp-dots{display:flex;gap:5px;margin-bottom:10px;}
+.cf-vp-dots .cf-dot{width:12px;height:12px;}
+.cf-vp-dots .cf-dot--ghost{width:9px;height:9px;}
+.cf-vp-acts{display:flex;justify-content:flex-end;gap:6px;flex-wrap:wrap;}
+.cf-res{list-style:none;margin:0 0 8px;padding:0;display:flex;flex-direction:column;gap:6px;}
+.cf-res li{display:grid;grid-template-columns:minmax(0, 1fr) 70px 18px;align-items:center;gap:6px;}
+.cf-res li.is-top .cf-res-l{font-weight:var(--weight-bold);}
+.cf-res-l{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.cf-res-bar{height:6px;border-radius:999px;background:var(--surface-subtle);overflow:hidden;}
+.cf-res-bar span{display:block;height:100%;border-radius:999px;background:var(--fg-1);}
+.cf-res b{text-align:right;}
+.cf-res-none{color:var(--fg-3);}
+.cf-vp-note{margin:0 0 8px;color:var(--fg-3);line-height:1.4;}
+@media (max-width: 560px){ .cf-vp{left:12px;right:12px;width:auto;top:auto;bottom:64px;} .cf-bar{top:auto;bottom:64px;} }
+
+/* ---------- Post-its: square, like a real sticky note (they grow if the text is long) ---------- */
+#xc-wrap .xc-note{width:176px;}
+#xc-wrap .xc-note .xc-pi:not(.xc-pi--draft){aspect-ratio:1 / 1;min-height:0;}
+#xc-wrap .xc-note .xc-pi-text{flex:1;}
+
+/* ---------- Text view inside a graph component: uses the component's full width, sized with A− / A+ ---------- */
+#xc-wrap .xc-tslot > .text-view-wrap{padding:14px 16px 20px;}
+#xc-wrap .xc-tslot .text-view, #xc-wrap .xc-tslot #text-view-content{max-width:none;}
+#xc-wrap .xc-w--live .xc-tslot .text-view{zoom:var(--cf-tv-zoom, 1);}
+.cf-tsize{box-shadow:none;align-items:center;}
+.cf-tsize button{height:22px;min-width:26px;padding:0 6px;font-size:var(--text-xs);font-weight:var(--weight-bold);}
+.cf-tsize-n{min-width:38px;text-align:center;font-size:10px;color:var(--fg-3);font-variant-numeric:tabular-nums;}
+
+/* ---------- Hover tips on canvas controls ---------- */
+#xc-wrap [data-tip]{position:relative;}
+#xc-wrap [data-tip]::after{content:attr(data-tip);position:absolute;left:calc(100% + 10px);top:50%;transform:translateY(-50%);z-index:30;white-space:nowrap;padding:5px 9px;border-radius:var(--radius-sm);background:var(--inv-bg);color:var(--inv-fg);font-size:var(--text-xs);font-weight:var(--weight-regular);line-height:1.3;box-shadow:var(--shadow-3);pointer-events:none;opacity:0;visibility:hidden;transition:opacity .12s ease .25s;}
+#xc-wrap [data-tip][data-tip-pos="below"]::after{left:50%;top:calc(100% + 8px);transform:translateX(-50%);}
+#xc-wrap [data-tip]:hover::after, #xc-wrap [data-tip]:focus-visible::after{opacity:1;visibility:visible;}
+@media (prefers-reduced-motion: reduce){ #xc-wrap [data-tip]::after{transition:none;} }
+@media (hover: none){ #xc-wrap [data-tip]::after{display:none;} }
+
+/* ---------- Compare: edit the criteria, resize the table ---------- */
+.cf-crit{display:flex;align-items:flex-start;gap:4px;}
+.cf-crit-x{flex-shrink:0;width:18px;height:18px;margin-left:auto;padding:0;border:0;border-radius:var(--radius-sm);background:transparent;color:var(--fg-3);font:inherit;font-size:var(--text-sm);line-height:1;cursor:pointer;opacity:0;}
+.cf-table tr:hover .cf-crit-x, .cf-crit-x:focus-visible{opacity:1;}
+.cf-crit-x:hover{background:var(--surface-subtle);color:var(--fg-1);}
+@media (hover: none){ .cf-crit-x{opacity:1;} }
+.cf-addrow th{padding:6px 0 0;border-bottom:0;}
+.cf-crit-in{width:100%;box-sizing:border-box;min-height:30px;padding:4px 8px;border-radius:var(--radius-sm);border:1px dashed var(--border-1);background:transparent;color:var(--fg-1);font:inherit;font-size:var(--text-xs);}
+.cf-crit-in::placeholder{color:var(--fg-3);}
+.cf-crit-in:focus{outline:var(--focus-ring);outline-offset:1px;border-style:solid;}
+.cf-w{display:flex;flex-direction:column;}
+.cf-w .cf-w-b{flex:1 1 auto;min-height:0;} /* auto, not 0: a height set by resizing must stick */
+.cf-grip{position:absolute;right:3px;bottom:3px;width:10px;height:10px;box-sizing:border-box;border-right:2px solid var(--fg-3);border-bottom:2px solid var(--fg-3);border-radius:0 0 3px 0;cursor:nwse-resize;touch-action:none;}
+.cf-grip::before{content:"";position:absolute;right:-5px;bottom:-5px;width:20px;height:20px;} /* a bigger hit area */
+
+/* ---------- Template / Inputs: drag the corner to change the width (their height follows the content) ---------- */
+#xc-wrap [data-wid="tpl"] > .xc-w-grip, #xc-wrap [data-wid="inputs"] > .xc-w-grip, #xc-wrap [data-wid^="step-"] > .xc-w-grip{cursor:ew-resize;}
+
+/* ---------- Text view rows can be dragged out like graph nodes ---------- */
+/* a header's name (category / topic) is a drag handle: grab hand and a hint on hover; after a click it is plain text (I-beam) */
+#xc-wrap .xc-tslot :is(.tv-category-label, .tv-topic-label){cursor:grab;border-radius:var(--radius-sm);transition:background var(--duration-fast);}
+#xc-wrap .xc-tslot :is(.tv-category-label, .tv-topic-label):hover{background:var(--surface-subtle);}
+#xc-wrap .xc-tslot :is(.tv-category-label, .tv-topic-label):hover::after{content:"⠿ Drag to the canvas";margin-left:2px;padding:1px 8px;border-radius:999px;border:1px dashed var(--border-1);font-size:10px;font-weight:var(--weight-bold);color:var(--fg-3);white-space:nowrap;pointer-events:none;}
+#xc-wrap .xc-tslot :is(.tv-category-label, .tv-topic-label).cf-tv-text{cursor:text;background:transparent;}
+#xc-wrap .xc-tslot :is(.tv-category-label, .tv-topic-label).cf-tv-text::after{content:none;}
+#xc-wrap .xc-tslot :is(.tv-category-label, .tv-topic-label) :is(button, a){cursor:pointer;}
+#xc-wrap .xc-tslot .cf-tv-armed{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px;background:var(--surface-subtle);border-radius:var(--radius-sm);cursor:grabbing;}
+body.cf-nosel, body.cf-nosel *{user-select:none !important;-webkit-user-select:none !important;cursor:grabbing !important;}
+
+/* ---------- Template: each section's ideas collapse to a slim tab on its right ---------- */
+.cf-ideas-btn{min-height:22px;padding:0 9px;font-size:10px;margin-right:4px;}
+#xc-wrap .xc-tray-h{display:flex;align-items:center;}
+.cf-tray-x{margin-left:auto;width:20px;height:20px;font-size:var(--text-md);}
+.cf-tray-tab{display:none;}
+#xc-wrap .xc-split.cf-tray-closed{grid-template-columns:minmax(0, 1fr);}
+#xc-wrap .cf-tray-closed > .xc-tray{padding:0;border-style:solid;align-self:stretch;}
+#xc-wrap .cf-tray-closed > .xc-tray > :not(.cf-tray-tab){display:none;}
+#xc-wrap .cf-tray-closed .cf-tray-tab{display:flex;flex-direction:row;align-items:center;gap:8px;width:100%;height:auto;min-height:0;padding:6px 10px;border:0;border-radius:var(--radius-md);background:transparent;color:var(--fg-2);font:inherit;font-size:10px;font-weight:var(--weight-medium);cursor:pointer;}
+#xc-wrap .cf-tray-closed .cf-tray-tab:hover{background:var(--surface-subtle);color:var(--fg-1);}
+#xc-wrap .cf-tray-closed .cf-tray-tab:focus-visible{outline:var(--focus-ring);outline-offset:-2px;}
+.cf-tray-tab-t{white-space:nowrap;}
+/* sections side by side share one height: the taller one sets the row */
+#xc-wrap .xc-w--tpl .xc-cols{align-items:stretch;}
+#xc-wrap .xc-w--tpl .xc-cols > .xc-sec{height:auto;align-self:stretch;}
+
+/* ---------- Compare: add a criterion ---------- */
+.cf-crit-bar{display:flex;align-items:center;gap:8px;margin-top:8px;}
+.cf-crit-tip{color:var(--fg-3);}
+.cf-crit-form{margin-top:8px;padding:8px;border-radius:var(--radius-sm);border:1px solid var(--border-2);background:var(--surface-subtle);display:flex;flex-direction:column;gap:6px;}
+.cf-crit-l{font-weight:var(--weight-medium);color:var(--fg-1);}
+.cf-crit-row{display:flex;gap:6px;align-items:center;}
+.cf-crit-row .cf-crit-in{flex:1;border-style:solid;background:var(--surface-card);}
+.cf-crit-sugg{display:flex;flex-wrap:wrap;align-items:center;gap:4px;color:var(--fg-3);}
+.cf-crit-sugg > span{margin-right:2px;}
+
+/* ---------- Ask AI on highlighted text ---------- */
+.cf-ask{position:fixed;z-index:4000;transform:translate(-50%, calc(-100% - 8px));display:none;padding:3px;border-radius:999px;background:var(--surface-card);border:1px solid var(--border-2);box-shadow:var(--shadow-3);}
+.cf-ask.is-on{display:flex;}
+.cf-ask button{min-height:28px;padding:0 12px;border:0;border-radius:999px;background:var(--fg-1);color:var(--surface-card);font:inherit;font-size:var(--text-xs);font-weight:var(--weight-bold);cursor:pointer;}
+.cf-ask button:focus-visible{outline:var(--focus-ring);outline-offset:2px;}
+.cf-ask.is-on{gap:3px;}
+.cf-ask .cf-ask-2{background:transparent;color:var(--fg-1);}
+.cf-ask .cf-ask-2:hover{background:var(--surface-subtle);}
+
+/* ---------- Compare: the table always fits its content; making it taller makes the rows taller ---------- */
+.cf-cmp .cf-w-b{max-height:none;overflow:visible;display:flex;flex-direction:column;}
+.cf-cmp .cf-table{flex:1 0 auto;}
+.cf-ai-note{display:flex;align-items:center;gap:6px;margin:0 0 8px;padding:5px 8px;border-radius:var(--radius-sm);background:var(--c-lighPurple);color:var(--c-sevPurple);font-weight:var(--weight-medium);}
+.cf-ai-work{display:inline-flex;align-items:center;gap:6px;color:var(--c-sevPurple);font-style:italic;}
+.cf-filling{background:color-mix(in srgb, var(--c-lighPurple) 55%, transparent);}
+/* the Text view is reading material: a normal cursor (text I-beam / arrow), not the canvas's grab hand */
+#xc-wrap .xc-tslot .text-view-wrap{cursor:auto;}
+
+/* ---------- Text is text: neutral labels on post-its / options are plain text, not capsules (status badges stay badges) ---------- */
+body .xc-tag:not(.xc-tag--draft):not(.xc-tag--dod){padding:0;border-radius:0;background:none !important;border:0;font-size:var(--text-xs);color:inherit;opacity:.75;}
+body .xc-pi-tags .xc-tag:not(.xc-tag--draft):not(.xc-tag--dod) + .xc-tag:not(.xc-tag--draft):not(.xc-tag--dod)::before{content:"· ";}
+body .rs-facets{gap:0 2px;}
+body .rs-facets li{padding:0;border:0;border-radius:0;background:none;font-size:var(--text-xs);color:var(--fg-2);}
+body .rs-facets li + li::before{content:"· ";color:var(--fg-3);}
+/* coloured post-its keep dark text in both modes (white on a pastel can't be read) */
+#xc-wrap :is(.xc-pi--user, .xc-pi--smart, .xc-pi--ai), #xc-wrap :is(.xc-pi--user, .xc-pi--smart, .xc-pi--ai) :is(textarea, input, .xc-pi-d, .xc-pi-p, .xc-chip, .xc-tag){color:var(--c-solid-black);}
+
+/* ---------- Tags follow the design system (both POCs) ----------
+   1. Information is plain text: framework parts, groups, facets ("Category fit", "All-in-one work management") */
+body :is(.rs-dimtag, .rs-kindtag){display:inline;margin:0 8px 0 0;padding:0;border:0;border-radius:0;background:none;font-size:var(--text-xs);font-weight:var(--weight-medium);color:var(--fg-2);}
+body .rs-dimtag + .rs-dimtag::before{content:"· ";color:var(--fg-3);}
+/* 2. A status is a filled tag (colour inside, never an outline-only pill) */
+body :is(.rs-best, .xc-steptpl-lock, .tv-origin, .gnc-tag, .ex-pill, .rs-dod-tag){border-color:transparent !important;border-style:solid !important;}
+body .xc-steptpl-lock{background:var(--surface-subtle, var(--c-lightBlack));color:var(--fg-2);}
+body .tv-origin.idea{background:var(--tone-explore-bg);}
+/* 3. Dark text on light fills: a coral / lilac fill with white text can't be read */
+body :is(.tv-origin.kept){color:var(--c-solid-black);}
+[data-theme="dark"] .xc-cursor-tag{color:var(--c-solid-black);}
+/* Post-its keep the same pastel colours in light and dark (the --c-sevp* tokens have no dark versions), so everything
+   written on them stays dark in both themes (user test: in dark mode the facts on an option post-it turned white on the
+   pastel note, and its chips turned dark with black text). Chips on a post-it are a light tint of black, not a surface. */
+#xc-wrap :is(.xc-pi--user, .xc-pi--smart, .xc-pi--ai) :is(dl, dt, dd, p, li, b, strong, em, small, span:not(.xc-chip *), a, label, .xc-pi-t, .xc-pi-why){color:var(--c-solid-black);}
+#xc-wrap :is(.xc-pi--user, .xc-pi--smart, .xc-pi--ai) .xc-chip{background:color-mix(in srgb, var(--c-solid-black) 8%, transparent);border-color:color-mix(in srgb, var(--c-solid-black) 18%, transparent);color:var(--c-solid-black);}

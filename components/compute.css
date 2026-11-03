@@ -1,0 +1,51 @@
+/* components/compute.css — the Calculation step of an Execution node (components/compute.js).
+   Reuses the page's .ip-source card, .ip-field, .ex-table and .banner. Tokens and the page's aliases only. */
+.xq{margin:10px 0;}
+.xq-status{font-weight:normal;color:var(--fg-3);}
+.xq-add{margin:6px 0 0;}
+.xq-files{margin:0;padding:0 0 0 18px;font-size:var(--text-xs);line-height:1.6;color:var(--fg-1);}
+.xq-in{display:flex;flex-wrap:wrap;align-items:flex-start;gap:8px;}
+.xq-paste{flex:1 1 100%;}
+.xq-paste > summary{display:inline-block;list-style:none;cursor:pointer;}
+.xq-paste > summary::-webkit-details-marker{display:none;}
+.xq-paste[open]{display:flex;flex-direction:column;gap:6px;}
+.xq-form{display:flex;flex-direction:column;gap:4px;}
+.xq-form select.ip-field, .xq-form input.ip-field{min-height:36px;}
+.xq-num{max-width:140px;}
+.xq-crit{margin:6px 0 0;padding:0;border:0;display:flex;flex-direction:column;gap:6px;}
+.xq-crit-row{display:grid;grid-template-columns:minmax(0, 2fr) 90px minmax(0, 1.4fr);gap:6px;}
+.xq-out{display:flex;flex-direction:column;gap:8px;padding-top:4px;border-top:1px solid var(--border-2);}
+.xq-sum{margin:0;padding:0 0 0 18px;font-size:var(--text-sm);line-height:1.5;color:var(--fg-1);}
+.xq-table{max-height:340px;overflow:auto;}
+.xq-table td.xq-n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;}
+.xq select:focus-visible, .xq input:focus-visible, .xq textarea:focus-visible, .xq button:focus-visible, .xq summary:focus-visible{outline:2px solid var(--fg-1);outline-offset:2px;}
+@media (max-width:600px){ .xq-crit-row{grid-template-columns:1fr 80px;} .xq-crit-row select:last-child{grid-column:1 / -1;} }
+.xq-edit > summary{display:inline-block;list-style:none;cursor:pointer;}
+.xq-edit > summary::-webkit-details-marker{display:none;}
+.xq-edit[open]{display:flex;flex-direction:column;gap:10px;}
+/* per-row AI step */
+.xq-tag > summary{display:inline-block;list-style:none;cursor:pointer;}
+.xq-tag > summary::-webkit-details-marker{display:none;}
+.xq-tag-body{display:flex;flex-direction:column;gap:6px;margin-top:8px;padding:10px 12px;border:1px dashed var(--border-2);border-radius:var(--radius-md);}
+.xq-cols{margin:0;padding:0;border:0;display:flex;flex-wrap:wrap;gap:4px 14px;}
+.xq-cols legend{margin-bottom:4px;}
+.xq-colpick{display:inline-flex;align-items:center;gap:6px;font-size:var(--text-xs);color:var(--fg-1);}
+.xq-range{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.xq-tag-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+.xq-check .ex-table select.ip-field, .xq-check .ex-table input.ip-field{min-height:30px;padding:4px 8px;font-size:var(--text-xs);}
+.xq-fixed{font-size:10px;color:var(--fg-3);}
+.xq-ai{color:var(--fg-2);}
+/* filter conditions */
+.xq-cond-row{display:grid;grid-template-columns:minmax(0, 1.5fr) minmax(0, 1.4fr) minmax(0, 1.2fr);gap:6px;}
+@media (max-width:600px){ .xq-cond-row{grid-template-columns:1fr 1fr;} .xq-cond-row > :last-child{grid-column:1 / -1;} }
+/* several calculations in one node */
+.xq-chain{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:4px;}
+.xq-step{border:1px solid var(--border-2);border-radius:var(--radius-md);padding:6px 10px;font-size:var(--text-xs);color:var(--fg-2);}
+.xq-step > summary{cursor:pointer;line-height:1.45;}
+.xq-step[open]{display:flex;flex-direction:column;gap:6px;}
+.xq-step b{color:var(--fg-1);}
+.xq-step-now{margin:4px 0 0;}
+.xq-step-actions{display:flex;flex-wrap:wrap;gap:8px;}
+/* a condition that looks in another table: the table, then its column */
+.xq-ref{display:flex;gap:6px;min-width:0;}
+.xq-ref select{min-width:0;flex:1;}

@@ -1,0 +1,12 @@
+/* components/stage-canvas.css — the Cognitive Field canvas for Entry, Intent, Planning and the Workstream result
+   (see stage-canvas.js). It is drawn into the execution canvas's own #xc-wrap, so it already has that canvas's look
+   (entry-v4.html and cf-collab.css); only what is new here is in this file. Tokens only. */
+
+/* a done-when criterion the result doesn't meet yet: a warning edge, not the "Adding" look */
+#xc-wrap .xc-pi.sc-pi--warn{box-shadow:inset 3px 0 0 var(--c-sevS-yellow), var(--shadow-1);}
+/* "Show on template" flashes the part */
+#xc-wrap .xc-sec.xc-flash{animation:xcFlash 1.4s ease-out 2;}
+/* Explore card: the angles, each can become a post-it */
+.sc-pts{margin:6px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:var(--text-sm);}
+.sc-pts .ip-mini{margin-left:4px;}
+@media (prefers-reduced-motion: reduce){ #xc-wrap .xc-sec.xc-flash{animation:none;} }

@@ -1,0 +1,24 @@
+/* components/exec-kinds.css — Execution node Kinds: "Running as <Kind> · Change", modifiers line, the Kind picker.
+   The approval gate reuses the Node complexity v2 gate look (.cx-gate). Tokens and the page's aliases only. */
+.xk-run{white-space:normal;}
+.xk-run b{color:var(--fg-1);font-weight:var(--weight-bold);}
+.xk-mods{margin-top:2px;color:var(--fg-3);}
+
+/* Uses the page's own .modal card (.modal-head, .modal-close-btn); a native <dialog> needs its border and colours reset. */
+.xk-dlg{border:0;color:var(--fg-1);width:calc(100vw - 32px);max-width:760px;max-height:calc(100vh - 48px);overflow:auto;}
+.xk-dlg::backdrop{background:var(--c-overlayBg);}
+.xk-dlg .modal-head{margin-bottom:8px;}
+.xk-dlg-h{margin:0;font:inherit;}
+.xk-dlg-body{display:flex;flex-direction:column;gap:14px;}
+.xk-dlg-body > .ip-hint{margin:0;}
+.xk-fam .cx-h{display:block;margin-top:0;}
+.xk-grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));gap:6px;}
+.xk-opt{display:flex;flex-direction:column;gap:2px;text-align:left;padding:8px 10px;border:1px solid var(--border-2);border-radius:var(--radius-md);background:var(--surface-card);color:var(--fg-1);font:inherit;font-size:var(--text-xs);line-height:1.35;cursor:pointer;}
+.xk-opt span{color:var(--fg-3);}
+.xk-opt:hover{background:var(--surface-subtle);}
+.xk-opt:focus-visible{outline:2px solid var(--fg-1);outline-offset:2px;}
+.xk-opt.is-cur{border-color:var(--fg-1);box-shadow:inset 0 0 0 1px var(--fg-1);}
+.xk-opt.is-alt{border-style:dashed;}
+.xk-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.xk-row select{flex:1;min-width:180px;}
+@media (max-width:600px){ .xk-grid{grid-template-columns:1fr;} }

@@ -1,0 +1,22 @@
+/* components/dot-loader.css — dot-matrix loaders (see dot-loader.js for where they come from and the licence note).
+   PROTOTYPE ONLY: ported from Dot Matrix (Custom Proprietary License) — get permission or replace before production.
+   Colour: orange, like Dot Matrix's "Sunset" preset, via our --g-rev-aiGen-still token (round 24b).
+   Tokens only. The upgraded spinner keeps its size; its old ring look (border + spin) is switched off. */
+.dmx{display:inline-grid !important;grid-template-columns:repeat(5, var(--dmx-d));grid-auto-rows:var(--dmx-d);gap:var(--dmx-g);place-content:center;
+  --dmx-d:2px;--dmx-g:0.5px;--dmx-cycle:833ms;
+  width:auto !important;height:auto !important;border:0 !important;border-radius:0 !important;background:none !important;animation:none !important;
+  color:var(--c-sevOrange);vertical-align:-2px;flex:none;box-sizing:content-box;}
+.dmx.graph-loading-spinner:not(.ep-spin){--dmx-d:4px;--dmx-g:1.5px;}
+/* each dot is filled with the reverse AI gradient (yellow → pink) — our token closest to Dot Matrix's "Sunset" orange preset */
+.dmx .dmx-dot{display:block;width:var(--dmx-d);height:var(--dmx-d);border-radius:50%;background:var(--g-rev-aiGen-still);opacity:0.08;}
+.dmx .dmx-off{visibility:hidden;}
+/* Tri Orbit: 12 ring cells step clockwise; the brightness repeats every 4 steps, so three heads chase each other */
+.dmx--orbit .dmx-ring{animation:dmx-orbit var(--dmx-cycle) steps(1, end) infinite;animation-delay:calc((var(--o) - 12) * var(--dmx-cycle) / 12);}
+@keyframes dmx-orbit{
+  0%{opacity:1;} 8.333%{opacity:0.728;} 16.667%{opacity:0.24;} 25%{opacity:0.208;}
+  33.333%{opacity:1;} 41.667%{opacity:0.728;} 50%{opacity:0.24;} 58.333%{opacity:0.208;}
+  66.667%{opacity:1;} 75%{opacity:0.728;} 83.333%{opacity:0.24;} 91.667%{opacity:0.208;} 100%{opacity:1;}
+}
+@media (prefers-reduced-motion: reduce){
+  .dmx--orbit .dmx-ring{animation:none;opacity:var(--still);}
+}

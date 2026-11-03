@@ -1,0 +1,13 @@
+/* components/compare-check.css — Compare in two steps: check the data, then the scores (see compare-check.js). Tokens only. */
+.cmp-steps{display:flex;gap:6px;margin:0 0 8px;padding:0;list-style:none;counter-reset:cmp;font-size:var(--text-xs);}
+.cmp-steps li{counter-increment:cmp;display:inline-flex;align-items:center;gap:6px;padding:2px 10px 2px 4px;border:1px solid var(--border-2);border-radius:999px;color:var(--fg-3);}
+.cmp-steps li::before{content:counter(cmp);display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:var(--surface-subtle);color:var(--fg-2);font-weight:var(--weight-bold);}
+.cmp-steps li.is-cur{border-color:var(--fg-1);color:var(--fg-1);font-weight:var(--weight-bold);}
+.cmp-steps li.is-cur::before{background:var(--fg-1);color:var(--surface-card);}
+.cmp-steps li.is-done::before{content:'✓';background:var(--sev-green-bg, var(--c-sevaccGreen));color:var(--sev-green, var(--c-sevS-green));}
+.cmp-table .cmp-val{width:100%;min-width:110px;box-sizing:border-box;}
+.cmp-table .cmp-crit .rs-w{display:block;}
+.cmp-table .cmp-rm{display:block;margin-top:4px;}
+.cmp-table select{max-width:100%;}
+.cmp-add{display:flex;gap:6px;margin:8px 0 0;}
+.cmp-add .ip-field{flex:1;min-width:0;}

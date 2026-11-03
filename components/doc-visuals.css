@@ -1,0 +1,14 @@
+/* components/doc-visuals.css — diagrams and photos inside node documents (doc-visuals.js). Tokens only.
+   The SVG strokes and text use currentColor, so a printed PDF stays readable without this file. */
+.dv-fig{margin:14px 0;padding:12px;border:1px solid var(--border-2);border-radius:var(--radius-md);background:var(--surface-subtle);color:var(--fg-1);overflow-x:auto;}
+.dv-fig svg{display:block;max-width:100%;height:auto;margin:0 auto;font:inherit;font-size:13px;}
+.dv-fig .dv-node rect{fill:var(--surface-card);stroke:var(--border-1);}
+.dv-fig .dv-node--root rect{stroke:var(--fg-2);stroke-width:1.75;}
+.dv-fig line, .dv-fig path{stroke:var(--fg-3);}
+.dv-fig marker path{fill:var(--fg-3);stroke:none;}
+.dv-fig .dv-loop{font-size:40px;fill:var(--fg-4);}
+.dv-fig figcaption{margin-top:8px;font-size:var(--text-xs);color:var(--fg-3);text-align:center;}
+.dv-photo{margin:14px 0;max-width:420px;overflow:hidden;border:1px solid var(--border-2);border-radius:var(--radius-md);background:var(--surface-subtle);}
+.dv-photo img{display:block;width:100%;height:auto;aspect-ratio:4 / 3;object-fit:cover;}
+.dv-photo figcaption{padding:4px 8px;font-size:10px;line-height:1.3;color:var(--fg-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.dv-photo figcaption a{color:inherit;}

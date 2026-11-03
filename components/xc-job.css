@@ -1,0 +1,5 @@
+/* Execution node: "In this node" — the node's whole job in one plain sentence, above "Right now" (the current step)
+   in Output and on top of "About this node" on the canvas. */
+.xc-now-job{margin:0 0 var(--space-3);padding:0 0 var(--space-3);border-bottom:1px solid var(--border-2);font-size:var(--text-md);font-weight:var(--weight-bold);line-height:1.4;color:var(--txt-pri);}
+.xc-now-job > span{display:block;margin:0 0 var(--space-1);font-size:var(--text-xs);font-weight:var(--weight-bold);letter-spacing:.04em;text-transform:uppercase;color:var(--fg-4);}
+.xc-about .xc-now-job{margin-bottom:var(--space-2);padding-bottom:var(--space-2);}
