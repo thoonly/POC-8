@@ -1,0 +1,55 @@
+/* App-level pieces that did not exist in the prototype's single page: banner, AI settings dialog.
+   Tokens and the aliases defined in entry.css only. No literal colors. */
+
+.banner{
+  display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap;
+  padding:var(--space-3) var(--space-4);border-radius:var(--radius-md);font-size:var(--text-sm);line-height:1.5;
+  background:var(--c-bgRed);color:var(--c-sevRed);border:1px solid var(--c-sevS-red);
+}
+.banner--info{background:var(--c-lightIndigo);color:var(--c-sevBlue);border-color:var(--c-sevBlue);}
+[data-theme="dark"] .banner:not(.banner--info){color:var(--c-sevS-red);}
+.banner__text{flex:1 1 240px;min-width:0;}
+.banner__actions{display:flex;gap:8px;flex-shrink:0;}
+
+.ai-dialog{
+  width:min(720px, calc(100vw - 32px));max-height:calc(100vh - 48px);padding:0;overflow:hidden;
+  border:1px solid var(--border-2);border-radius:var(--radius-lg);
+  background:var(--surface-card);color:var(--txt-pri);
+}
+.ai-dialog::backdrop{background:var(--c-overlayBg);}
+.ai-dialog[open]{display:flex;flex-direction:column;}
+.ai-dialog__head{display:flex;align-items:center;gap:12px;padding:var(--space-4) var(--space-5);border-bottom:1px solid var(--border-2);}
+.ai-dialog__head h2{margin:0;flex:1;font-size:var(--text-md);}
+.ai-dialog__body{padding:var(--space-5);display:flex;flex-direction:column;gap:var(--space-5);overflow-y:auto;}
+.ai-dialog__h{margin:0 0 8px;font-size:var(--text-xs);font-weight:var(--weight-bold);letter-spacing:.08em;text-transform:uppercase;color:var(--fg-4);}
+.ai-dialog dl{display:grid;grid-template-columns:max-content 1fr;gap:6px 16px;margin:0;font-size:var(--text-sm);}
+.ai-dialog dt{color:var(--txt-sec);}
+.ai-dialog dd{margin:0;word-break:break-word;}
+.ai-dialog__note{margin:0;font-size:var(--text-xs);color:var(--txt-ter);line-height:1.5;}
+.ai-status{display:inline-flex;align-items:center;gap:6px;font-weight:var(--weight-medium);}
+.ai-status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c-sevS-red);}
+.ai-status--ok::before{background:var(--sev-green);}
+.ai-usage{overflow-x:auto;}
+.ai-usage table{width:100%;border-collapse:collapse;font-size:var(--text-xs);}
+.ai-usage th,.ai-usage td{padding:6px 8px;text-align:right;white-space:nowrap;border-bottom:1px solid var(--border-2);}
+.ai-usage th:first-child,.ai-usage td:first-child{text-align:left;}
+.ai-usage th{font-weight:var(--weight-bold);color:var(--txt-sec);}
+.ai-usage td.is-bad{color:var(--sev-yellow);font-weight:var(--weight-bold);}
+.ai-usage__empty{margin:0;font-size:var(--text-sm);color:var(--txt-ter);}
+
+.ws-draft{display:flex;flex-direction:column;gap:12px;padding:16px 20px;font-size:var(--text-sm);line-height:1.6;}
+.ws-draft h2{margin:0;font-size:var(--text-md);}
+.ws-draft__label{margin:0 0 2px;font-size:var(--text-xs);font-weight:var(--weight-bold);letter-spacing:.08em;text-transform:uppercase;color:var(--fg-4);}
+.ws-draft p{margin:0;}
+.ws-pending{padding:16px 20px;font-size:var(--text-sm);color:var(--txt-ter);line-height:1.5;}
+
+/* Chat (React port): a context chip's label is a real button, and errors sit in the message list. */
+.ctx-chip__btn{display:inline-flex;align-items:center;gap:4px;padding:0;border:0;background:none;color:inherit;font:inherit;cursor:pointer;border-radius:var(--radius-sm);min-width:0;}
+.ctx-chip__btn:focus-visible,.ctx-chip-x:focus-visible,.chip-x:focus-visible{outline:2px solid var(--brand);outline-offset:2px;}
+.chat-error{align-self:stretch;}
+.ws-chat-inline{display:flex;flex-direction:column;flex:1;min-height:420px;padding:0 20px 20px;}
+.uib textarea:focus-visible{outline:none;} /* the whole .uib shows the focus ring (:focus-within) */
+
+.spinner{width:18px;height:18px;border-radius:50%;border:2px solid var(--border-2);border-top-color:var(--brand);animation:spin .8s linear infinite;display:inline-block;vertical-align:-4px;}
+@keyframes spin{to{transform:rotate(360deg);}}
+@media (prefers-reduced-motion: reduce){.spinner{animation-duration:2.4s;}}

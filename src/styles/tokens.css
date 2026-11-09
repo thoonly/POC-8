@@ -1,0 +1,486 @@
+/* ==========================================================================
+   tokens.css — SINGLE SOURCE OF TRUTH
+   Source: colors.pdf · v1 · 2026-07-20
+   Rules:
+   - Never hard-code hex/rgb/gradients outside this file.
+   - Light values live in :root. Dark overrides live in [data-theme="dark"].
+     Tokens that are identical in both modes are defined in :root only.
+   - Naming: --c-<identifier> (color), --g-<identifier> (gradient).
+     Identifiers are kept verbatim from the design system (case-sensitive).
+   - Stability markers: [TBR] to be reviewed · [TBC] to be confirmed ·
+     [LEGACY] do not use in new work · [EXPERIMENTAL] not production-stable.
+   - Typography / spacing / radius / motion sections are PLACEHOLDERS
+     (not in colors.pdf). Replace with real design-system values.
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  /* ---------- Colors: Base ---------- */
+  --c-disablePri-fill: #F5F5F5;
+  --c-disableSec-fill: #FBEDEF;
+  --c-disableTer-fill: #F8F8F8;
+  --c-disablePri-shape: #D9D9D9;
+  --c-disableSec-shape: #E3A5A0;
+  --c-disableTer-shape: #E9E9E9;
+  --c-shapePri: #000000;            /* most used, standard */
+  --c-shapeSec: #51544F;            /* low-priority text */
+  --c-shapeStd: #868984;            /* remarks, disclaimers, subheads, dropdowns */
+  --c-shapeMain-rev: #FFFFFF;       /* shapePri reversed */
+  --c-shapeStd-reverse: #FFFFFF;
+  --c-sneakPeak-shape: rgba(0,0,0,0.30);   /* [TBC] */
+
+  /* ---------- Colors: Shapes (brand + form) ---------- */
+  --c-element-still: #9B816A;
+  --c-element-hover: #7B6354;
+  --c-element-active: #E16449;
+  --c-element-bgHover: #F6F9F2;     /* [TBR] */
+  --c-element-bgActive: #F1F4ED;    /* [TBR] */
+  --c-element-disable: #E4D4C6;     /* [TBR] */
+  --c-form-still: #F6F9F2;
+  --c-form-still-alt: #71746E;
+  --c-form-hover: #868983;
+  --c-form-active: #51544E;
+  --c-form-focusShape: #434343;
+  --c-form-placeHolder: #B1B4AD;
+  --c-form-bgHover: #FBFEF7;
+  --c-form-disable: #CED1CA;
+  --c-form-topBg-hover: #FDFDFD;    /* [TBR] */
+  --c-form-topBg-active: #F8F8F8;
+
+  /* ---------- Colors: Solids (mode-independent, never override in dark) ---------- */
+  --c-solid-white: #FFFFFF;
+  --c-solid-black: #000000;
+  --c-solid-gray: #9D9D9D;
+
+  /* ---------- Family: Black (default) ---------- */
+  --c-fbStill: #000000;
+  --c-fbHover: #2E2E2E;
+  --c-fbHover-shape: #7B6354;
+  --c-fbActive: #1A1A1A;
+  --c-fbDisable: #B4B4B4;
+  --c-fbDisableActive: #9D9D9D;
+
+  /* ---------- Family: Text ---------- */
+  --c-bTxt-primary: #000000;
+  --c-bTxt-secondary: #434343;
+  --c-bTxt-tertiary: #7B7B7B;
+  --c-bTxt-disPri: #9D9D9D;
+  --c-bTxt-disSec: #C4C4C4;
+
+  /* ---------- Family: Brand — do NOT overuse; brandStill/Hover/Active: avoid as fill ---------- */
+  --c-brandStill: #DD6E5D;
+  --c-brandHover: #E3A5A0;
+  --c-brandActive: #E16549;
+  --c-brandDisable: #F7D3D4;
+  --c-brandDisable-alt: #F1E5DB;
+  --c-brandAccent: #7B6354;
+  --c-brandFill: #000000;
+
+  /* ---------- Family: Green (positive) ---------- */
+  --c-green-still: #83B02A;
+  --c-green-hover: #6E9D1F;
+  --c-green-active: #346800;
+  --c-green-disable: #DFEBC2;
+  --c-greenBg-hover: #F2F8E7;
+  --c-greenBg-Active: #DFEBC2;
+
+  /* ---------- Family: Negative (same in light & dark) ---------- */
+  --c-neg-still: #E51D0B;
+  --c-neg-hover: #DE1507;
+  --c-neg-active: #D30A03;
+  --c-neg-disShape: #F6BBB6;
+  --c-neg-disFill: #FEFBFB;
+
+  /* ---------- Family: Ghost (buttons, text, icons) ---------- */
+  --c-ghost-still: #51544E;
+  --c-ghost-hover: #DE1507;         /* matches neg-hover; confirm with design */
+  --c-ghost-active: #000000;
+  --c-ghost-disable: #C4C4C4;
+  --c-ghost-accent: #71746F;
+
+  /* ---------- Family: Select ---------- */
+  --c-select-still-fill: #F6F9F2;
+  --c-select-hover-fill: #F1F4ED;
+  --c-select-active-fill: #51544E;
+  --c-select-disable-fill: #FBFEF7;
+  --c-select-still-shape: #868983;
+  --c-select-hover-shape: #71746E;
+  --c-select-active-shape: #F6F9F2;
+  --c-select-disable-shape: #CED1CA;
+  --c-select-accent-in: #ECEFE8;
+  --c-select-accent-out: #F6F9F2;
+
+  /* ---------- Family: Indigo — spotlight only, do NOT overuse ---------- */
+  --c-indigo-still: #1D406A;
+  --c-indigo-hover: #2A5E89;
+  --c-indigo-active: #316D9A;
+  --c-indigo-disable: #E3F0F4;
+
+  /* ---------- Severity ---------- */
+  --c-sevBrand: #E16549;
+  --c-sevGreen: #59B60E;
+  --c-sevGreen-contrast: #598916;
+  --c-sevRed: #E51D0C;
+  --c-sevNeutral: #52544E;
+  --c-sevNeutral-alt: #252525;
+  --c-sevGray: #D9D9D9;
+  --c-sevYellow: #F4E34A;
+  --c-sevOrange: #FD8D08;
+  --c-sevYellow-contrast: #9B7900;
+  --c-sevPurple: #6A38A5;           /* AI-related tone */
+  --c-sevBlue: #287DAA;
+
+  /* Severity: Backdrop (rarely used) */
+  --c-bgBrand: #FBFEF7;
+  --c-bgNeutral: #FDFDFD;
+  --c-bgGreen: #F2F8E6;
+  --c-bgYellow: #FFFBE6;
+  --c-bgRed: #FFFBFB;
+  --c-bgMono: #ECEFE8;
+
+  /* Severity: Shapes (custom strokes) */
+  --c-sevS-brand: #71746E;
+  --c-sevS-neutral: #545454;
+  --c-sevS-green: #598916;
+  --c-sevS-yellow: #9B7900;
+  --c-sevS-red: #ED6154;
+  --c-sevS-mono: #52544E;
+
+  /* Severity: Accents (tone-up backdrops) */
+  --c-sevaccIdent: #F1F4ED;
+  --c-sevaccBrand: #ECEFE8;
+  --c-sevaccNeutral: #D9D9D9;
+  --c-sevaccGreen: #DFECC3;
+  --c-sevaccYellow: #FDF4C0;
+  --c-sevaccRed: #FCE4E2;
+  --c-sevaccMono: #B1B4AD;
+  --c-sevaccIndigo: #105D89;
+
+  /* Severity: Pastel (avatar backdrops when no image) */
+  --c-sevpBlue: #B6DFFF;
+  --c-sevpViolet: #E2BEFC;
+  --c-sevpGreen: #CADF9C;
+  --c-sevpOrange: #FEDF82;
+  --c-sevpYellow: #FBEE97;
+  --c-sevpRed: #F7BBB6;
+  --c-sevpGray: #E9E9E9;
+  --c-sevpNeutral: #D0D0D0;
+  --c-sevGlassStoke: rgba(255,255,255,0.95);  /* [EXPERIMENTAL] stroke only */
+
+  /* ---------- Backdrops: general ---------- */
+  --c-contrastBg: #FFFFFF;
+  --c-overlayBg: rgba(0,0,0,0.60);
+  --c-whiteOverlayBg: rgba(255,255,255,0.80);
+  --c-saas-ciq: #F8F8F8;            /* main solid app background (not login) */
+
+  /* Backdrops: light tonal */
+  --c-lightBlack: #F5F5F5;
+  --c-lightBlack-100: #E8E8E8;
+  --c-lightBlack-200: #D9D9D9;
+  --c-lightWhite: #FDFDFD;
+  --c-lightWhite-100: #F8F8F8;
+  --c-lightWhite-200: #F3F3F3;
+  --c-lightWhite-300: #EEEEEE;
+  --c-lightWhite-400: #D0D0D0;
+  --c-lightGreen: #EEFFE3;
+  --c-lightGrass: #E5FAEC;
+  --c-lightLime: #F1FAE5;
+  --c-lightSap: #F2F8E6;
+  --c-lightSap-100: #DFECC3;
+  --c-lightMonoGreen: #FBFEF7;
+  --c-lightMonoGreen-100: #F6F9F2;
+  --c-lightSeashell: #FEFAF7;       /* [LEGACY] */
+  --c-lightRice: #F0E5DB;           /* [LEGACY] */
+  --c-lightFlamingo: #FBEDEF;
+  --c-lighPurple: #EDE7F4;          /* spelling verbatim from source (no "t") */
+  --c-lightIndigo: #E3F0F4;
+  --c-lightDodgerBlue: #E2F2FF;
+  --c-lightRed: #FCE4E2;
+  --c-lightRed-a100: #FFFBFB;
+  --c-lightBlood: #FFFBFB;          /* [LEGACY] alias of lightRed-a100 */
+  --c-lightVividOrange: #FFF8E2;
+  --c-lightCadaverous: #FFFBE5;
+  --c-lightPink: #FAE2F0;
+
+  /* ---------- Gradients: aiGen (AI surfaces) ---------- */
+  --g-aiGen-still: linear-gradient(90deg, #280594 0%, #E60077 100%);
+  --g-aiGen-hover: linear-gradient(90deg, #3E00FF 0%, #8E0049 100%);
+  --g-aiGen-active: linear-gradient(90deg, #830AF0 0%, #105D89 100%);
+  --g-aiGen-disable: linear-gradient(90deg, #D3C4FF 0%, #FFD1E9 100%);
+  --g-aiGen-bgFill: linear-gradient(90deg, #F7F3FE 0%, #FEF8FE 100%);
+  --g-chatAi: linear-gradient(90deg, #FDFDFD 0%, #F8F8F8 100%);
+  --g-rev-aiGen-still: linear-gradient(90deg, #FBDB39 0%, #FF3D71 100%);
+  --g-rev-aiGen-hover: linear-gradient(90deg, #FF3D71 0%, #E4C2D3 100%);
+  --g-rev-aiGen-active: linear-gradient(90deg, #D7B1FA 0%, #FBDB39 100%);
+  --g-rev-aiGen-disable: linear-gradient(90deg, #D3C4FF 0%, #FFD1E9 100%);
+  /* multiAnim A–D: cycle together as one animation, never standalone */
+  --g-aiGen-multiAnim-A: linear-gradient(90deg, #280594 2.87%, #870385 33.98%, #B7017E 65.08%, #E60077 97.13%);
+  --g-aiGen-multiAnim-B: linear-gradient(90deg, #E60077 2.87%, #280594 33.98%, #870385 65.08%, #B7017E 97.13%);
+  --g-aiGen-multiAnim-C: linear-gradient(90deg, #B7017E 2.87%, #E60077 33.98%, #280594 65.08%, #870385 97.13%);
+  --g-aiGen-multiAnim-D: linear-gradient(90deg, #870385 2.87%, #B7017E 33.98%, #E60077 65.08%, #280594 97.13%);
+
+  /* Gradients: Linear (alerts, headers, backdrops) */
+  --g-linBg-std: linear-gradient(90deg, #F8F8F8 0%, #EEE 100%);
+  --g-linBg-brand: linear-gradient(90deg, #FEFAF7 0%, #F4F0ED 100%);
+  --g-linBg-red: linear-gradient(90deg, #FFFBFB 0%, #FCE4E2 100%);
+  --g-linBg-yellow-still: linear-gradient(90deg, #FFFBE6 0%, #FDF4C0 100%);
+  --g-linBg-yellow-hover: linear-gradient(90deg, #FBEF97 0%, #FDF4C0 100%);
+  --g-linBg-yellow-press: linear-gradient(90deg, #F4E34A 0%, #F8E96D 100%);
+  --g-linBg-green: linear-gradient(90deg, #EEFFE3 0%, #F1FAE5 100%);
+  --g-linBg-indigo: linear-gradient(90deg, #F1F7F9 0%, #E3F0F4 100%);
+
+  /* Gradients: Node */
+  --g-nodeCA-initP: radial-gradient(100% 141.42% at 0% 0%, rgba(225,101,73,0.06) 0%, rgba(225,101,73,0.02) 100%);
+
+  /* Gradients: Stills (edge-fade hints for scrollable content) */
+  --g-gradRoller-top: linear-gradient(0deg, rgba(255,255,255,0) 0%, #FFF 100%);
+  --g-gradRoller-bottom: linear-gradient(180deg, rgba(255,255,255,0) 0%, #FFF 100%);
+  --g-gradRoller-left: linear-gradient(270deg, rgba(255,255,255,0) 0%, #FFF 100%);
+  --g-gradRoller-right: linear-gradient(90deg, rgba(255,255,255,0) 0%, #FFF 100%);
+
+  /* Gradients: Tiles (state/status). Keep tileOpt and tileOpGreen paired. */
+  --g-tileOpt-still: linear-gradient(225deg, #F9F9F9 0%, #FBFAFA 100%);
+  --g-tileOpt-hover: linear-gradient(225deg, #F9F9F9 0%, #FFF 100%);
+  --g-tileOpt-active: linear-gradient(225deg, #E7E7E7 0%, #FFF 100%);
+  --g-tileOpGreen-still: linear-gradient(225deg, #FFF 0%, #F6F9F2 100%);
+  --g-tileOpGreen-hover: linear-gradient(225deg, #F2F8E7 0%, #FFF 100%);
+  --g-tileOpGreen-active: linear-gradient(225deg, #DFECC3 0%, #FFF 100%);
+
+  /* Gradients: UI backgrounds */
+  --g-glass: radial-gradient(305.24% 125.31% at 3.86% 8.33%, rgba(255,255,255,0.60) 0%, rgba(255,255,255,0.20) 100%);
+  --g-glassDisable: radial-gradient(305.24% 125.31% at 3.86% 8.33%, rgba(218,218,218,0.50) 0%, rgba(218,218,218,0.20) 100%);
+  --g-chatUser: linear-gradient(135deg, #FBFEF7 0%, #F6F9F2 100%);
+  --g-clipboard: linear-gradient(180deg, rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.70) 100%);  /* [TBC] */
+  --g-ciq-login: linear-gradient(180deg, #F8F8F8 0%, #FFF 100%);
+
+  /* ==========================================================================
+     PLACEHOLDERS — not defined in colors.pdf. Replace with real values.
+     ========================================================================== */
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Thai", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --text-xs: 12px;  --text-sm: 14px;  --text-md: 16px;
+  --text-lg: 20px;  --text-xl: 28px;
+  --weight-regular: 400;  --weight-medium: 500;  --weight-bold: 600;
+  --leading-tight: 1.25;  --leading-body: 1.5;
+
+  --space-1: 4px;   --space-2: 8px;   --space-3: 12px;  --space-4: 16px;
+  --space-5: 24px;  --space-6: 32px;  --space-7: 48px;
+
+  --radius-sm: 6px;  --radius-md: 10px;  --radius-lg: 16px;
+  --duration-fast: 120ms;  --duration-base: 200ms;
+  --focus-ring: 2px solid var(--c-form-focusShape);
+}
+
+/* ==========================================================================
+   DARK MODE — only values that differ from light
+   ========================================================================== */
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Base */
+  --c-disablePri-fill: #262626;
+  --c-disableSec-fill: #3C3633;
+  --c-disableTer-fill: #313131;
+  --c-disablePri-shape: #545454;
+  --c-disableSec-shape: #C15341;
+  --c-disableTer-shape: #545454;
+  --c-shapePri: #FFFFFF;
+  --c-shapeSec: #F6F9F3;
+  --c-shapeStd: #ECEFE9;
+  --c-shapeMain-rev: #000000;
+  --c-shapeStd-reverse: #262626;
+  --c-sneakPeak-shape: rgba(255,255,255,0.30);
+
+  /* Shapes */
+  --c-element-still: #E4D4C6;
+  --c-element-hover: #F1E5DB;
+  --c-element-bgHover: #51544F;
+  --c-element-bgActive: #2F312D;
+  --c-element-disable: #7B6354;
+  --c-form-still: #2F312D;
+  --c-form-still-alt: #F1F4ED;
+  --c-form-hover: #B1B4AD;
+  --c-form-active: #ECEFE8;
+  --c-form-focusShape: #D9D9D9;
+  --c-form-placeHolder: #71746E;
+  --c-form-bgHover: #2F312C;
+  --c-form-disable: #868983;
+  --c-form-topBg-hover: #7F7F7F;
+  --c-form-topBg-active: #000000;
+
+  /* Black */
+  --c-fbStill: #FFFFFF;
+  --c-fbHover: #C4C4C4;
+  --c-fbHover-shape: #F8EFEB;
+  --c-fbActive: #E9E9E9;
+  --c-fbDisable: #313131;
+  --c-fbDisableActive: #898989;
+
+  /* Text */
+  --c-bTxt-primary: #FFFFFF;
+  --c-bTxt-secondary: #F8F8F8;
+  --c-bTxt-tertiary: #EEEEEE;
+  --c-bTxt-disPri: #7B7B7B;
+  --c-bTxt-disSec: #555555;
+
+  /* Brand */
+  --c-brandStill: #B34E3B;
+  --c-brandHover: #B34E3B;
+  --c-brandActive: #A14733;
+  --c-brandDisable: #A14733;
+  --c-brandDisable-alt: #7B6354;
+  --c-brandAccent: #E4D4C6;
+  --c-brandFill: #2E2E2E;
+
+  /* Green */
+  --c-green-still: #A3C953;
+  --c-green-hover: #92C032;
+  --c-green-active: #83B02A;
+  --c-green-disable: #346800;
+  --c-greenBg-hover: #0E1D00;
+  --c-greenBg-Active: #183000;
+
+  /* Negative */
+  --c-neg-disShape: #953E3E;
+  --c-neg-disFill: #3C3633;
+
+  /* Ghost */
+  --c-ghost-still: #F8F8F8;
+  --c-ghost-active: #FFFFFF;
+  --c-ghost-disable: #747474;
+  --c-ghost-accent: #F3F3F3;
+
+  /* Select */
+  --c-select-still-fill: #2F312C;
+  --c-select-hover-fill: #51544E;
+  --c-select-active-fill: #ECEFE8;
+  --c-select-disable-fill: #2F312C;
+  --c-select-still-shape: #B1B4AD;
+  --c-select-hover-shape: #ECEFE8;
+  --c-select-active-shape: #000000;
+  --c-select-disable-shape: #71746E;
+  --c-select-accent-in: #71746E;
+  --c-select-accent-out: #51544E;
+
+  /* Indigo */
+  --c-indigo-disable: #387DA9;
+
+  /* Severity */
+  --c-sevGreen: #89D225;
+  --c-sevGreen-contrast: #93E9B0;
+  --c-sevRed: #D30A03;
+  --c-sevNeutral: #ECEFE8;
+  --c-sevNeutral-alt: #FFFFFF;
+  --c-sevGray: #555555;
+  --c-sevYellow: #FBEE97;
+  --c-sevOrange: #FEC82A;
+  --c-sevYellow-contrast: #F4E34A;
+  --c-sevPurple: #D1C3E4;
+  --c-sevBlue: #E3F0F4;
+
+  --c-bgBrand: #11140E;
+  --c-bgNeutral: #0F0F0F;
+  --c-bgGreen: #002C00;
+  --c-bgYellow: #411F00;
+  --c-bgRed: #3D0000;
+  --c-bgMono: #868983;
+
+  --c-sevS-brand: #F1F4ED;
+  --c-sevS-neutral: #F8F8F8;
+  --c-sevS-green: #F2F8E6;
+  --c-sevS-yellow: #FFFBE6;
+  --c-sevS-mono: #F6F9F2;
+
+  --c-sevaccIdent: #52544E;
+  --c-sevaccBrand: #52544E;
+  --c-sevaccNeutral: #868983;
+  --c-sevaccGreen: #346900;
+  --c-sevaccYellow: #9B7900;
+  --c-sevaccRed: #D30A03;
+  --c-sevaccIndigo: #358AB5;
+
+  --c-sevpViolet: #CF93FB;
+  --c-sevGlassStoke: rgba(255,255,255,0.60);
+
+  /* Backdrops */
+  --c-contrastBg: #262626;
+  --c-overlayBg: rgba(28,22,19,0.60);
+  --c-whiteOverlayBg: rgba(28,22,19,0.60);
+  --c-saas-ciq: #1C1613;
+
+  --c-lightBlack: #262626;
+  --c-lightBlack-100: #434343;
+  --c-lightBlack-200: #555555;
+  --c-lightWhite: #0F0F0F;
+  --c-lightWhite-100: #1A1A1A;
+  --c-lightWhite-200: #252525;
+  --c-lightWhite-300: #383838;
+  --c-lightWhite-400: #4C4C4C;
+  --c-lightGreen: #346900;
+  --c-lightGrass: #009A33;
+  --c-lightLime: #6BC116;
+  --c-lightSap: #598916;
+  --c-lightSap-100: #164A09;
+  --c-lightMonoGreen: #2F312C;
+  --c-lightMonoGreen-100: #52544E;
+  --c-lightSeashell: #494443;
+  --c-lightRice: #8C7260;
+  --c-lightFlamingo: #B24D3B;
+  --c-lighPurple: #3A1B7E;
+  --c-lightIndigo: #105D89;
+  --c-lightDodgerBlue: #2178FF;
+  --c-lightRed: #D30A03;
+  --c-lightRed-a100: #DA1205;
+  --c-lightBlood: #DA1205;
+  --c-lightVividOrange: #FD8D08;
+  --c-lightCadaverous: #BA9F10;
+  --c-lightPink: #A50067;
+
+  /* Gradients: aiGen */
+  --g-aiGen-still: linear-gradient(90deg, #FBDB39 0%, #FF3D71 100%);
+  --g-aiGen-hover: linear-gradient(90deg, #D1C2FF 0%, #E4C2D3 100%);
+  --g-aiGen-active: linear-gradient(90deg, #D7B1FA 0%, #C6D8E3 100%);
+  --g-aiGen-disable: linear-gradient(90deg, #003EB2 0%, #6A0091 100%);
+  --g-aiGen-bgFill: linear-gradient(90deg, #001D53 0%, #550073 100%);
+  --g-chatAi: linear-gradient(90deg, #1A1A1A 0%, #101010 100%);
+  --g-rev-aiGen-disable: linear-gradient(90deg, #003EB2 0%, #6A0091 100%);
+  --g-aiGen-multiAnim-A: linear-gradient(90deg, #FBDB39 2.87%, #FDA96B 33.98%, #FE9083 65.08%, #FF3D71 97.13%);
+  --g-aiGen-multiAnim-B: linear-gradient(90deg, #FF3D71 2.87%, #FBDB39 33.98%, #FDA96B 65.08%, #FE9083 97.13%);
+  --g-aiGen-multiAnim-C: linear-gradient(90deg, #FE9083 2.87%, #FF3D71 33.98%, #FBDB39 65.08%, #FDA96B 97.13%);
+  --g-aiGen-multiAnim-D: linear-gradient(90deg, #FDA96B 2.87%, #FE9083 33.98%, #FF3D71 65.08%, #FBDB39 97.13%);
+
+  /* Gradients: Linear */
+  --g-linBg-std: linear-gradient(90deg, #1A1A1A 0%, #383838 100%);
+  --g-linBg-brand: linear-gradient(90deg, #1C1613 0%, #3C3633 100%);
+  --g-linBg-red: linear-gradient(90deg, #470000 0%, #1F0A0A 100%);
+  --g-linBg-yellow-still: linear-gradient(90deg, #2D2D00 0%, #191900 100%);
+  --g-linBg-yellow-hover: linear-gradient(90deg, #37370A 0%, #23230A 100%);
+  --g-linBg-yellow-press: linear-gradient(90deg, #414114 0%, #2D2D14 100%);
+  --g-linBg-green: linear-gradient(90deg, #0A2A0A 0%, #0A160A 100%);
+  --g-linBg-indigo: linear-gradient(90deg, #0A0A24 0%, #00234C 100%);
+
+  /* Gradients: Node */
+  --g-nodeCA-initP: radial-gradient(100.03% 141.42% at 0% 0%, rgba(60,54,51,0.90) 0%, rgba(60,54,51,0.60) 100%);
+
+  /* Gradients: Stills */
+  --g-gradRoller-top: linear-gradient(0deg, rgba(23,23,25,0) 0%, #171719 100%);
+  --g-gradRoller-bottom: linear-gradient(180deg, rgba(23,23,25,0) 0%, #171719 100%);
+  --g-gradRoller-left: linear-gradient(270deg, rgba(23,23,25,0) 0%, #171719 100%);
+  --g-gradRoller-right: linear-gradient(90deg, rgba(23,23,25,0) 0%, #171719 100%);
+
+  /* Gradients: Tiles */
+  --g-tileOpt-still: linear-gradient(225deg, #000 0%, #242424 100%);
+  --g-tileOpt-hover: linear-gradient(225deg, #282828 0%, #000 100%);
+  --g-tileOpt-active: linear-gradient(225deg, #636363 0%, #000 100%);
+  --g-tileOpGreen-still: linear-gradient(225deg, #000 0%, #181D04 100%);
+  --g-tileOpGreen-hover: linear-gradient(225deg, #202615 0%, #000 100%);
+  --g-tileOpGreen-active: linear-gradient(225deg, #455229 0%, #000 100%);
+
+  /* Gradients: UI backgrounds */
+  --g-glass: radial-gradient(305.24% 125.31% at 3.86% 8.33%, rgba(255,255,255,0.23) 0%, rgba(255,255,255,0.10) 100%);
+  --g-glassDisable: radial-gradient(305.24% 125.31% at 3.86% 8.33%, rgba(112,112,112,0.30) 0%, rgba(112,112,112,0.10) 100%);
+  --g-chatUser: linear-gradient(135deg, #1B2908 0%, #0A1C01 100%);
+  --g-ciq-login: linear-gradient(180deg, #1C1613 0%, #000 100%);
+}
